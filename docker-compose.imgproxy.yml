@@ -1,0 +1,37 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        BUILD_MODE: server
+    ports:
+      - "5000:3000"
+    environment:
+      IMGPROXY_URL: http://imgproxy:8080
+      IMGPROXY_UPLOADS_DIR: /tmp/imgproxy_uploads
+      IMGPROXY_OUTPUTS_DIR: /tmp/imgproxy_outputs
+    volumes:
+      - uploads:/tmp/imgproxy_uploads
+      - outputs:/tmp/imgproxy_outputs
+    depends_on:
+      imgproxy:
+        condition: service_healthy
+
+  imgproxy:
+    image: darthsim/imgproxy:latest
+    environment:
+      IMGPROXY_LOCAL_FILESYSTEM_ROOT: /uploads
+      IMGPROXY_MAX_SRC_RESOLUTION: 500
+      IMGPROXY_JPEG_PROGRESSIVE: "true"
+      IMGPROXY_BIND: ":8080"
+    volumes:
+      - uploads:/uploads
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  uploads:
+  outputs:

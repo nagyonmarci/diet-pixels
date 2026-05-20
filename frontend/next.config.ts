@@ -31,6 +31,21 @@ const getNextConfig = () => {
   }
 
   // ------------------------------
+  // SERVER MODE (imgproxy wrapper — Next.js serves API routes)
+  // ------------------------------
+  if (buildMode === 'server') {
+    return {
+      experimental: {
+        proxyClientMaxBodySize: proxyClientMaxBodySizeValue,
+      },
+      output: 'standalone',
+      images: {
+        unoptimized: true,
+      },
+    };
+  }
+
+  // ------------------------------
   // EXPORT MODE (build / CI / prod)
   // ------------------------------
   return {
