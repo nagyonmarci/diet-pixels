@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.7
+
 # 1) Stage: FRONTEND BUILD (with Node)
 ############################################################
 # Use the build platform for this stage so that the Node
@@ -18,9 +20,28 @@ RUN pnpm run build
 # The built static files are in /app/frontend/out/
 
 ############################################################
-# 2) Stage: FINAL PYTHON IMAGE
+# 2) Stage: PYTHON DEPENDENCY BUILD
 ############################################################
-# Build the final image for the target platform.
+FROM python:3.11-slim-bookworm AS python-deps
+
+RUN set -eux; \
+    apt-get update -o Acquire::Retries=5 -o Acquire::http::Timeout=30 && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    python3-dev \
+    libjpeg-dev libpng-dev libtiff-dev libwebp-dev libopenjp2-7-dev \
+    libimagequant-dev libheif-dev liblcms2-dev \
+    libfreetype6-dev libharfbuzz-dev libfribidi-dev \
+    libxcb1-dev zlib1g-dev libgif-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /build
+COPY requirements.txt /build/
+RUN pip wheel --no-cache-dir --wheel-dir /wheels -r requirements.txt
+
+############################################################
+# 3) Stage: FINAL PYTHON IMAGE
+############################################################
 FROM python:3.11-slim-bookworm
 
 
@@ -34,7 +55,7 @@ LABEL org.opencontainers.image.source="https://github.com/karimz1/imgcompress"
 LABEL org.opencontainers.image.documentation="https://github.com/karimz1/imgcompress"
 LABEL org.opencontainers.image.licenses="GPL-3.0-or-later"
 
-# 🧩 Install system dependencies required for full Pillow image format support
+# Install runtime system dependencies required for full Pillow image format support
 # 
 # This layer installs libraries that enable reading/writing many image formats:
 #   - libjpeg, libpng, libtiff, libwebp, libopenjp2: common raster formats (JPEG, PNG, TIFF, WebP, JPEG2000)
@@ -49,12 +70,10 @@ LABEL org.opencontainers.image.licenses="GPL-3.0-or-later"
 RUN set -eux; \
     apt-get update -o Acquire::Retries=5 -o Acquire::http::Timeout=30 && \
     apt-get install -y --no-install-recommends \
-    python3-dev python3-pip \
-    libjpeg-dev libpng-dev libtiff-dev libwebp-dev libopenjp2-7-dev \
-    libimagequant-dev libheif-dev liblcms2-dev \
-    libfreetype6-dev libharfbuzz-dev libfribidi-dev \
-    libxcb1-dev zlib1g-dev libgif-dev ghostscript \
-    curl \
+    libjpeg62-turbo libpng16-16 libtiff6 libwebp7 libwebpdemux2 libwebpmux3 libopenjp2-7 \
+    libimagequant0 libheif1 liblcms2-2 \
+    libfreetype6 libharfbuzz0b libfribidi0 \
+    libxcb1 zlib1g libgif7 ghostscript \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory.
@@ -63,7 +82,8 @@ WORKDIR /container
 # Copy requirements and setup files first to leverage layer caching for dependencies
 COPY requirements.txt /container/
 COPY setup.py /container/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN --mount=type=bind,from=python-deps,source=/wheels,target=/wheels,readonly \
+    pip install --no-cache-dir --no-index --find-links=/wheels -r requirements.txt
 
 # Copy backend code and other necessary files
 COPY backend/ /container/backend
@@ -89,8 +109,6 @@ RUN mkdir -p /container/backend/image_converter/presentation/web/static_site
 
 # Copy the built frontend static site from the previous stage.
 COPY --from=frontend-build /app/frontend/out/. /container/backend/image_converter/presentation/web/static_site
-COPY --from=frontend-build /app/frontend/.next /container/backend/image_converter/presentation/web/static_site
-COPY --from=frontend-build /app/frontend/public /container/backend/image_converter/presentation/web/static_site
 
 
 EXPOSE 5000
