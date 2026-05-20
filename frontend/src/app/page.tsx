@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDropzone } from "react-dropzone";
@@ -35,6 +36,7 @@ import { cn } from "@/lib/utils";
 
 
 function HomePageContent() {
+  const { t } = useTranslation();
   const [disableLogo, setDisableLogo] = useState(false);
   const [configReady, setConfigReady] = useState(false);
   const [storageManagementDisabled, setStorageManagementDisabled] = useState(false);
@@ -173,12 +175,12 @@ function HomePageContent() {
       });
 
       unsupportedFiles.forEach((fileName) => {
-        toast.error(`Unsupported File Format: ${fileName}`);
+        toast.error(t("page.toast.unsupportedFormat", { fileName }));
       });
 
       if (unsupportedFiles.length > 0) {
         setError({
-          message: `${unsupportedFiles.length} file(s) were rejected due to unsupported file types.`,
+          message: t("page.toast.filesRejected", { count: unsupportedFiles.length }),
         });
       }
 
@@ -200,14 +202,14 @@ function HomePageContent() {
       e.preventDefault();
 
       if (files.length === 0) {
-        setError({ message: "Please drop or select some files first." });
-        toast.error("Please drop or select some files first.");
+        setError({ message: t("page.toast.noFilesError") });
+        toast.error(t("page.toast.noFilesError"));
         return;
       }
 
       if (!outputFormat) {
-        setError({ message: "Please select an output format first." });
-        toast.error("Please select an output format first.");
+        setError({ message: t("page.toast.noFormatError") });
+        toast.error(t("page.toast.noFormatError"));
         setFormatRequired(true);
         return;
       }
@@ -215,8 +217,8 @@ function HomePageContent() {
       if ((outputFormat === "jpeg" || outputFormat === "avif") && compressionMode === "quality") {
         const qualityNum = parseInt(quality, 10);
         if (isNaN(qualityNum) || qualityNum < 1 || qualityNum > 100) {
-          setError({ message: "Quality must be a number between 1 and 100." });
-          toast.error("Quality must be a number between 1 and 100.");
+          setError({ message: t("page.toast.qualityRangeError") });
+          toast.error(t("page.toast.qualityRangeError"));
           return;
         }
       }
@@ -224,25 +226,23 @@ function HomePageContent() {
       if (resizeWidthEnabled) {
         const widthNum = parseInt(width, 10);
         if (isNaN(widthNum) || widthNum <= 0) {
-          setError({ message: "Width must be a positive number." });
-          toast.error("Width must be a positive number.");
+          setError({ message: t("page.toast.widthPositiveError") });
+          toast.error(t("page.toast.widthPositiveError"));
           return;
         }
 
         if (outputFormat === "ico" && widthNum > 256) {
-          toast.info(
-            "ICO format is limited to a max width of 256px. Your input has been clamped to 256."
-          );
+          toast.info(t("page.toast.icoWidthClamped"));
           setWidth("256");
         }
       }
 
       if ((outputFormat === "jpeg" || outputFormat === "avif") && compressionMode === "size") {
         const trimmed = (targetSizeMB || "").trim();
-        const t = parseFloat(trimmed);
-        if (!trimmed || isNaN(t) || t <= 0) {
-          setError({ message: "Please set a positive Max file size (in MB)." });
-          toast.error("Please set a positive Max file size (in MB).");
+        const parsedSize = parseFloat(trimmed);
+        if (!trimmed || isNaN(parsedSize) || parsedSize <= 0) {
+          setError({ message: t("page.toast.targetSizeError") });
+          toast.error(t("page.toast.targetSizeError"));
           return;
         }
       }
@@ -328,8 +328,7 @@ function HomePageContent() {
         setDrawerOpen(true);
         await delay(600);
         toast.success(
-          `${data.converted_files.length} Image${data.converted_files.length > 1 ? "s" : ""
-          } compressed successfully!`
+          t("page.toast.compressedSuccess", { count: data.converted_files.length })
         );
       } catch (err) {
         if ((err as Error).name === "AbortError") {
@@ -338,11 +337,11 @@ function HomePageContent() {
         }
         console.error(err);
         setError({
-          message: "Something went wrong. Please try again.",
+          message: t("page.toast.unexpectedError"),
           details: err instanceof Error ? err.message : undefined,
           isApiError: true,
         });
-        toast.error("Something went wrong. Please try again.");
+        toast.error(t("page.toast.unexpectedError"));
       } finally {
         setIsLoading(false);
       }
@@ -368,9 +367,7 @@ function HomePageContent() {
   const clearFileSelection = useCallback(() => {
     setFiles([]);
     if (files.length > 0) {
-      toast.info(
-        `${files.length} Image${files.length !== 1 ? "s" : ""} selection cleared! 🧹`
-      );
+      toast.info(t("page.toast.selectionCleared", { count: files.length }));
     }
   }, [files]);
 
@@ -390,18 +387,16 @@ function HomePageContent() {
       const res = await fetch("/api/force_cleanup", { method: "POST" });
       const json = await res.json();
       if (json.status === "ok") {
-        toast.success(
-          "Deletion Complete. Your processed files have been permanently removed. 🧹🧹🧹"
-        );
+        toast.success(t("page.toast.cleanupSuccess"));
         setConverted([]);
         setDestFolder("");
         setDrawerOpen(false);
         setFileManagerRefresh((prev) => prev + 1);
       } else {
-        toast.error(json.error || "Force cleanup failed.");
+        toast.error(json.error || t("page.toast.cleanupFailed"));
       }
     } catch (error) {
-      toast.error("🚨 Cleanup failed.");
+      toast.error(t("page.toast.cleanupError"));
       console.error(error);
     }
   }, []);
@@ -411,7 +406,7 @@ function HomePageContent() {
       abortControllerRef.current.abort();
       abortControllerRef.current = null;
       setIsLoading(false);
-      toast.info("Compression cancelled.");
+      toast.info(t("page.toast.compressionCancelled"));
     }
   }, []);
 
@@ -454,7 +449,7 @@ function HomePageContent() {
                 imgcompress
               </CardTitle>
               <p className="text-center text-sm md:text-base text-muted-foreground mt-2">
-                An Image Compression Tool
+                {t("page.subtitle")}
               </p>
             </CardHeader>
           )}
@@ -525,7 +520,7 @@ function HomePageContent() {
                   <VisuallyHidden>
                     <DrawerHeader>
                       <DrawerTitle className="text-lg font-semibold text-center">
-                        Admin Tools
+                        {t("page.adminTools")}
                       </DrawerTitle>
                     </DrawerHeader>
                   </VisuallyHidden>

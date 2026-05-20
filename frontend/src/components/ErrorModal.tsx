@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -15,6 +16,7 @@ import { useErrorStore } from "@/context/ErrorStore";
 
 
 const ErrorModal = () => {
+  const { t } = useTranslation();
   const { error, clearError } = useErrorStore();
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -59,7 +61,7 @@ const ErrorModal = () => {
       <DialogContent className="bg-gray-950 text-gray-50 w-full max-w-3xl mx-auto p-6 md:p-8 rounded-lg shadow-2xl">
         <DialogHeader className="flex items-center space-x-3">
           <AlertTriangle className="h-10 w-10 text-red-500" />
-          <DialogTitle className="text-3xl font-bold">Error Occurred</DialogTitle>
+          <DialogTitle className="text-3xl font-bold">{t("errorModal.title")}</DialogTitle>
         </DialogHeader>
         <DialogDescription asChild className="mt-4">
           <div>
@@ -75,7 +77,7 @@ const ErrorModal = () => {
               </div>
             )}
             <div className="mt-4 text-base text-gray-300">
-              Please open a ticket and notify the developer so this can be fixed ASAP.
+              {t("errorModal.notifyDeveloper")}
             </div>
           </div>
         </DialogDescription>
@@ -88,12 +90,12 @@ const ErrorModal = () => {
             {copied ? (
               <>
                 <Check className="h-4 w-4" />
-                <span className="ml-2">Copied!</span>
+                <span className="ml-2">{t("errorModal.copied")}</span>
               </>
             ) : (
               <>
                 <Copy className="h-4 w-4" />
-                <span className="ml-2">Copy Error</span>
+                <span className="ml-2">{t("errorModal.copyError")}</span>
               </>
             )}
           </Button>
@@ -103,7 +105,7 @@ const ErrorModal = () => {
             onClick={handleOpenTicket}
           >
             <LifeBuoy className="h-4 w-4" />
-            <span className="ml-2">Open Ticket</span>
+            <span className="ml-2">{t("errorModal.openTicket")}</span>
           </Button>
           <Button
             className="flex items-center bg-gray-200 text-gray-900 border-gray-300 hover:bg-gray-300"
@@ -113,7 +115,7 @@ const ErrorModal = () => {
             }}
           >
             <XCircle className="h-4 w-4" />
-            <span className="ml-2">Close</span>
+            <span className="ml-2">{t("errorModal.close")}</span>
           </Button>
         </DialogFooter>
       </DialogContent>
