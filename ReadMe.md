@@ -1,4 +1,4 @@
-# ProxyPress
+# DietPixels
 
 Small self-hosted image compression UI backed by the official Go-based
 [`darthsim/imgproxy`](https://github.com/imgproxy/imgproxy) Docker image.
@@ -9,7 +9,7 @@ Compose.
 
 ## Attribution
 
-ProxyPress is a personal-purpose remix of two excellent projects:
+DietPixels is a personal-purpose remix of two excellent projects:
 
 - Karim Zouine's [`imgcompress`](https://github.com/karimz1/imgcompress), which
   inspired the user-facing compression workflow and parts of the frontend
@@ -44,7 +44,7 @@ http://localhost:3000
 The frontend image is built as:
 
 ```text
-proxypress-frontend:latest
+dietpixels-frontend:latest
 ```
 
 ## Local frontend development

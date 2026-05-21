@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@/components/visually-hidden";
 import { cn } from "@/lib/utils";
@@ -239,8 +240,15 @@ export function SplashScreen({
 
             <div className="relative z-10 flex flex-col items-center w-full max-w-4xl gap-8">
               <div className="w-full flex justify-center animate-breathe">
-                <div className="animate-glow rounded-2xl border border-white/15 bg-white/10 px-8 py-5 text-3xl font-bold tracking-wide text-white shadow-2xl shadow-blue-500/10 backdrop-blur-md">
-                  ProxyPress
+                <div className="relative h-[120px] w-[350px] max-w-[88vw] animate-glow">
+                  <Image
+                    src="/dietpixels-mark.svg"
+                    alt="DietPixels"
+                    fill
+                    draggable={false}
+                    className="object-contain drop-shadow-2xl"
+                    priority
+                  />
                 </div>
               </div>
 

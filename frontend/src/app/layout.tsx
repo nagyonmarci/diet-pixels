@@ -6,8 +6,8 @@ import { I18nProvider } from "@/context/I18nProvider";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export const metadata: Metadata = {
-  title: "ProxyPress",
-  description: "ProxyPress: a small imgproxy-backed image compression UI.",
+  title: "DietPixels",
+  description: "DietPixels: a small imgproxy-backed image compression UI.",
 };
 
 export default function RootLayout({

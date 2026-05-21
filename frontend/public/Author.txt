@@ -1,4 +1,4 @@
-Project: ProxyPress
+Project: DietPixels
 
 Attribution:
 - Frontend/workflow inspiration: Karim Zouine's imgcompress project

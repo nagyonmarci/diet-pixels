@@ -1,6 +1,6 @@
-# ProxyPress Frontend
+# DietPixels Frontend
 
-Next.js app for ProxyPress, a small image compression UI that wraps
+Next.js app for DietPixels, a small image compression UI that wraps
 `darthsim/imgproxy`.
 
 The app borrows frontend/workflow ideas from Karim Zouine's `imgcompress` and

@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import { en } from "./locales/en";
 import { hu } from "./locales/hu";
 
-export const LOCALE_STORAGE_KEY = "proxypress_locale";
+export const LOCALE_STORAGE_KEY = "dietpixels_locale";
 
 const savedLocale =
   typeof window !== "undefined"

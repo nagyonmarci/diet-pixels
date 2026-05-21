@@ -194,12 +194,12 @@ export const hu: TranslationSchema = {
     verifiedTitle: "Tesztelt és működő",
     unverifiedTitle: "Egyéb lehetséges formátumok",
     unverifiedHint: "Ezeket még nem teszteltük teljesen, de előfordulhat, hogy működnek!",
-    footerText: "A ProxyPress az imgproxy-t használja konverzióra és tömörítésre.",
+    footerText: "A DietPixels az imgproxy-t használja konverzióra és tömörítésre.",
     reportBug: "Hibát jelentek",
   },
 
   starBanner: {
-    message: "Hasznosnak találtad a ProxyPress-t?",
+    message: "Hasznosnak találtad a DietPixels-t?",
     linkText: "Egy csillag a GitHubon",
     suffix: "segít másoknak megtalálni.",
     dismiss: "Ne mutasd többet",
@@ -226,7 +226,7 @@ export const hu: TranslationSchema = {
   releaseNotes: {
     buttonLabel: "Kiadási megjegyzések",
     title: "Kiadási megjegyzések",
-    infoBoxText: "Ezek a jegyzetek a ProxyPress-t, az önálló imgproxy wrappert írják le.",
+    infoBoxText: "Ezek a jegyzetek a DietPixels-t, az önálló imgproxy wrappert írják le.",
     infoBoxLink: "A projekt README-je",
     infoBoxSuffix: "tartalmazza a telepítési és architektúra részleteket.",
     loading: "Betöltés…",

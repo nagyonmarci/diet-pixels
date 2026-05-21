@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDropzone } from "react-dropzone";
+import Image from "next/image";
 import { useTheme } from "next-themes";
 import { HardDrive } from "lucide-react";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -368,10 +369,19 @@ function HomePageContent() {
         <ToastContainer />
         <Card className={cn("w-full max-w-3xl border backdrop-blur-xl transition-colors", cardClass)}>
           <CardHeader className="pt-12 pb-10 flex flex-col items-center">
+            <Image
+              src="/dietpixels-mark.svg"
+              width={320}
+              height={110}
+              alt="DietPixels"
+              priority
+              draggable={false}
+              className="h-auto w-[260px] sm:w-[300px] md:w-[320px] drop-shadow-xl"
+            />
             <CardTitle
-              className={`text-center text-3xl md:text-4xl font-bold tracking-tight ${cardTitleClass}`}
+              className={`sr-only ${cardTitleClass}`}
             >
-              ProxyPress
+              DietPixels
             </CardTitle>
             <p className="text-center text-sm md:text-base text-muted-foreground mt-2">
               {t("page.subtitle")}
