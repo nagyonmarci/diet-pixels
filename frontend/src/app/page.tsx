@@ -370,13 +370,13 @@ function HomePageContent() {
         <Card className={cn("w-full max-w-3xl border backdrop-blur-xl transition-colors", cardClass)}>
           <CardHeader className="pt-12 pb-10 flex flex-col items-center">
             <Image
-              src="/dietpixels-mark.svg"
-              width={320}
-              height={110}
+              src="/dietpixels-logo.png"
+              width={330}
+              height={180}
               alt="DietPixels"
               priority
               draggable={false}
-              className="h-auto w-[260px] sm:w-[300px] md:w-[320px] drop-shadow-xl"
+              className="h-auto w-[240px] sm:w-[280px] md:w-[330px] drop-shadow-xl"
             />
             <CardTitle
               className={`sr-only ${cardTitleClass}`}

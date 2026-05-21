@@ -240,9 +240,9 @@ export function SplashScreen({
 
             <div className="relative z-10 flex flex-col items-center w-full max-w-4xl gap-8">
               <div className="w-full flex justify-center animate-breathe">
-                <div className="relative h-[120px] w-[350px] max-w-[88vw] animate-glow">
+                <div className="relative h-[190px] w-[350px] max-w-[88vw] animate-glow">
                   <Image
-                    src="/dietpixels-mark.svg"
+                    src="/dietpixels-logo.png"
                     alt="DietPixels"
                     fill
                     draggable={false}
