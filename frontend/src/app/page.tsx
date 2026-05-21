@@ -357,7 +357,7 @@ function HomePageContent() {
       />
       <BackendStatusBanner backendDown={isDown} />
 
-      <div className="relative w-full px-4 py-10 sm:px-6 flex-grow flex flex-col items-center text-foreground">
+      <div className="relative w-full px-4 py-6 sm:px-6 sm:py-8 flex-grow flex flex-col items-center text-foreground">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"

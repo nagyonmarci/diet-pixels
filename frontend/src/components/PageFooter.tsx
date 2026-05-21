@@ -22,16 +22,16 @@ const PageFooter = (props: React.HTMLAttributes<HTMLDivElement>) => {
   ];
 
   return (
-    <footer className="w-full max-w-3xl mt-16 pt-8 pb-6 text-center border-t border-border/40" {...props}>
-      <div className="space-y-4">
-        <div className="grid gap-3 pt-2 sm:grid-cols-2">
+    <footer className="w-full max-w-3xl mt-6 pb-4 text-center" {...props}>
+      <div>
+        <div className="grid gap-3 sm:grid-cols-2">
           {recommendations.map((repo) => (
             <a
               key={repo.href}
               href={repo.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group rounded-lg border border-border/50 bg-background/40 px-4 py-3 text-left transition-colors hover:border-foreground/30 hover:bg-muted/40"
+              className="group rounded-md border border-border/35 bg-transparent px-4 py-3 text-left transition-colors hover:border-foreground/25 hover:bg-muted/25"
             >
               <span className="flex items-center justify-between gap-3 text-sm font-semibold text-foreground">
                 {repo.title}
