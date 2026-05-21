@@ -29,7 +29,6 @@ export async function GET() {
   // Use statfs-equivalent via statvfs; fallback to 0 on unsupported platforms
   let availableMb = 0;
   try {
-    // @ts-expect-error — statfs available in Node 18+
     const stat = await fs.statfs(OUTPUTS_DIR).catch(() => null);
     if (stat) availableMb = Math.round((stat.bfree * stat.bsize) / (1024 * 1024) * 100) / 100;
   } catch {

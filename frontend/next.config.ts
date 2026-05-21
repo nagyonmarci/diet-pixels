@@ -1,5 +1,13 @@
 const getNextConfig = () => {
   const proxyClientMaxBodySizeValue = '4000mb';
+  const baseConfig = {
+    experimental: {
+      proxyClientMaxBodySize: proxyClientMaxBodySizeValue,
+    },
+    turbopack: {
+      root: __dirname,
+    },
+  };
 
   const lifecycle = process.env.npm_lifecycle_event;
   const explicitMode = process.env.NEXT_BUILD_MODE;
@@ -9,25 +17,13 @@ const getNextConfig = () => {
   // ------------------------------
   const buildMode =
     explicitMode ??
-    (lifecycle === 'dev' ? 'dev' : 'export');
+    (lifecycle === 'dev' ? 'dev' : 'server');
 
   // ------------------------------
   // DEV MODE
   // ------------------------------
   if (buildMode === 'dev') {
-    return {
-      experimental: {
-        proxyClientMaxBodySize: proxyClientMaxBodySizeValue,
-      },
-      async rewrites() {
-        return [
-          {
-            source: '/api/:path*',
-            destination: 'http://127.0.0.1:5000/api/:path*',
-          },
-        ];
-      },
-    };
+    return baseConfig;
   }
 
   // ------------------------------
@@ -35,9 +31,7 @@ const getNextConfig = () => {
   // ------------------------------
   if (buildMode === 'server') {
     return {
-      experimental: {
-        proxyClientMaxBodySize: proxyClientMaxBodySizeValue,
-      },
+      ...baseConfig,
       output: 'standalone',
       images: {
         unoptimized: true,
@@ -49,9 +43,7 @@ const getNextConfig = () => {
   // EXPORT MODE (build / CI / prod)
   // ------------------------------
   return {
-    experimental: {
-      proxyClientMaxBodySize: proxyClientMaxBodySizeValue,
-    },
+    ...baseConfig,
     output: 'export',
     images: {
       unoptimized: true,

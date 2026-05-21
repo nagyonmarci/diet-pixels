@@ -37,14 +37,6 @@ interface FileConversionFormProps {
   outputFormat: string;
   setOutputFormat: (val: string) => void;
   formatRequired: boolean;
-  pdfPreset: string;
-  setPdfPreset: (val: string) => void;
-  pdfScale: string;
-  setPdfScale: (val: string) => void;
-  pdfMarginMm: string;
-  setPdfMarginMm: (val: string) => void;
-  pdfPaginate: boolean;
-  setPdfPaginate: (val: boolean) => void;
   files: File[];
   removeFile: (name: string) => void;
   clearFileSelection: () => void;
@@ -55,10 +47,6 @@ interface FileConversionFormProps {
 
   compressionMode: "quality" | "size";
   setCompressionMode: (val: "quality" | "size") => void;
-
-  useRembg: boolean;
-  setUseRembg: (val: boolean) => void;
-  rembgModelName: string | null;
 
   // From useDropzone
   getRootProps: ReturnType<typeof useDropzone>["getRootProps"];
@@ -84,14 +72,6 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
   outputFormat,
   setOutputFormat,
   formatRequired,
-  pdfPreset,
-  setPdfPreset,
-  pdfScale,
-  setPdfScale,
-  pdfMarginMm,
-  setPdfMarginMm,
-  pdfPaginate,
-  setPdfPaginate,
   files,
   removeFile,
   clearFileSelection,
@@ -100,9 +80,6 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
   setTargetSizeMB,
   compressionMode,
   setCompressionMode,
-  useRembg,
-  setUseRembg,
-  rembgModelName,
   getRootProps,
   getInputProps,
   isDragActive,
@@ -117,14 +94,9 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
 
   const tooltipContent = {
     outputFormat: t("form.outputFormat.tooltip"),
-    pdfPreset: t("form.pdfPreset.tooltip"),
-    pdfScale: t("form.pdfScale.tooltip"),
-    pdfMargin: t("form.pdfMargin.tooltip"),
-    pdfPaginate: t("form.pdfPaginate.tooltip"),
     quality: t("form.quality.tooltip"),
     resizeWidth: t("form.resizeWidth.tooltip"),
     targetSize: t("form.targetSize.tooltip"),
-    rembg: t("form.rembg.tooltip"),
   };
   const subtleText = isDarkTheme ? "text-gray-400" : "text-slate-600";
   const surfaceInputClass = isDarkTheme
@@ -139,10 +111,6 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
   const filePillClass = isDarkTheme
     ? "bg-gray-800 text-gray-100 border border-gray-700"
     : "bg-slate-100 text-slate-900 border border-slate-200";
-  const parsedPdfMargin = parseFloat(pdfMarginMm);
-  const pdfMarginValue =
-    pdfMarginMm.trim() === "" || Number.isNaN(parsedPdfMargin) ? 10 : parsedPdfMargin;
-  const rembgLabel = rembgModelName?.trim() || "rembg";
   const renderError = useMemo(
     () =>
       error && (
@@ -268,8 +236,10 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
             <SelectItem value="jpeg">{t("form.outputFormat.options.jpeg")}</SelectItem>
             <SelectItem value="png">{t("form.outputFormat.options.png")}</SelectItem>
             <SelectItem value="avif">{t("form.outputFormat.options.avif")}</SelectItem>
-            <SelectItem value="pdf">{t("form.outputFormat.options.pdf")}</SelectItem>
             <SelectItem value="ico">{t("form.outputFormat.options.ico")}</SelectItem>
+            <SelectItem value="webp">WebP</SelectItem>
+            <SelectItem value="gif">GIF</SelectItem>
+            <SelectItem value="tiff">TIFF</SelectItem>
           </SelectContent>
         </Select>
         {!outputFormat && (
@@ -278,184 +248,6 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
           </p>
         )}
       </div>
-
-      {/* PDF Presets */}
-      {outputFormat === "pdf" && (
-        <div className="space-y-1">
-          <div className="flex items-center gap-1">
-            <Label htmlFor="pdfPreset" className="text-sm">
-              {t("form.pdfPreset.label")}
-            </Label>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span>
-                  <Info className={cn("h-4 w-4 cursor-pointer", subtleText)} />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent
-                side="top"
-                className={cn("p-2 rounded shadow-lg whitespace-pre-line border", tooltipSurface)}
-              >
-                {tooltipContent.pdfPreset}
-              </TooltipContent>
-            </Tooltip>
-          </div>
-          <Select value={pdfPreset} onValueChange={setPdfPreset}>
-            <SelectTrigger
-              id="pdfPreset"
-              className={cn(selectSurface, "focus:border-blue-500 focus:ring-2 focus:ring-blue-500")}
-            >
-              <SelectValue placeholder="Original" />
-            </SelectTrigger>
-            <SelectContent className={selectSurface}>
-              <SelectItem value="original">{t("form.pdfPreset.options.original")}</SelectItem>
-              <SelectItem value="a4-auto">{t("form.pdfPreset.options.a4Auto")}</SelectItem>
-              <SelectItem value="a4-portrait">{t("form.pdfPreset.options.a4Portrait")}</SelectItem>
-              <SelectItem value="a4-landscape">{t("form.pdfPreset.options.a4Landscape")}</SelectItem>
-              <SelectItem value="letter-auto">{t("form.pdfPreset.options.letterAuto")}</SelectItem>
-              <SelectItem value="letter-portrait">{t("form.pdfPreset.options.letterPortrait")}</SelectItem>
-              <SelectItem value="letter-landscape">{t("form.pdfPreset.options.letterLandscape")}</SelectItem>
-              <SelectItem value="mobile-portrait">{t("form.pdfPreset.options.mobilePortrait")}</SelectItem>
-              <SelectItem value="mobile-landscape">{t("form.pdfPreset.options.mobileLandscape")}</SelectItem>
-            </SelectContent>
-          </Select>
-          {pdfPreset !== "original" && (
-            <p className={cn("text-xs", subtleText)}>
-              {t("form.pdfPreset.disabledHint")}
-            </p>
-          )}
-        </div>
-      )}
-
-      {outputFormat === "pdf" && pdfPreset !== "original" && (
-        <div className="space-y-1">
-          <div className="flex items-center gap-1">
-            <Label htmlFor="pdfScale" className="text-sm">
-              {t("form.pdfScale.label")}
-            </Label>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span>
-                  <Info className={cn("h-4 w-4 cursor-pointer", subtleText)} />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent
-                side="top"
-                className={cn("p-2 rounded shadow-lg whitespace-pre-line border", tooltipSurface)}
-              >
-                {tooltipContent.pdfScale}
-              </TooltipContent>
-            </Tooltip>
-          </div>
-          <Select value={pdfScale} onValueChange={setPdfScale}>
-            <SelectTrigger
-              id="pdfScale"
-              className={cn(selectSurface, "focus:border-blue-500 focus:ring-2 focus:ring-blue-500")}
-              disabled={pdfPaginate}
-            >
-              <SelectValue placeholder="Fit" />
-            </SelectTrigger>
-            <SelectContent className={selectSurface}>
-              <SelectItem value="fit">{t("form.pdfScale.options.fit")}</SelectItem>
-              <SelectItem value="fill">{t("form.pdfScale.options.fill")}</SelectItem>
-            </SelectContent>
-          </Select>
-          {pdfPaginate && (
-            <p className={cn("text-xs", subtleText)}>
-              {t("form.pdfScale.paginationHint")}
-            </p>
-          )}
-        </div>
-      )}
-
-      {outputFormat === "pdf" && pdfPreset !== "original" && (
-        <div className="space-y-1">
-          <div className="flex items-center gap-1">
-            <Label htmlFor="pdfMargin" className="text-sm">
-              {t("form.pdfMargin.label")}
-            </Label>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span>
-                  <Info className={cn("h-4 w-4 cursor-pointer", subtleText)} />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent
-                side="top"
-                className={cn("p-2 rounded shadow-lg whitespace-pre-line border", tooltipSurface)}
-              >
-                {tooltipContent.pdfMargin}
-              </TooltipContent>
-            </Tooltip>
-            <span className={cn("text-sm", subtleText)}>
-              {(pdfMarginMm && pdfMarginMm.trim() !== "" ? pdfMarginMm : "10")} mm
-            </span>
-          </div>
-          <input
-            id="pdfMargin"
-            type="range"
-            min="0"
-            max="20"
-            step="1"
-            value={pdfMarginValue}
-            onChange={(e) => setPdfMarginMm(e.target.value)}
-            disabled={isLoading}
-            className="w-full accent-blue-500"
-          />
-          <div className="relative">
-            <Input
-              id="pdfMarginInput"
-              data-testid="pdfMarginInput"
-              type="number"
-              inputMode="decimal"
-              step="1"
-              min="0"
-              max="20"
-              placeholder="10"
-              value={pdfMarginMm}
-              onChange={(e) => setPdfMarginMm(e.target.value)}
-              disabled={isLoading}
-              className={cn(surfaceInputClass, "disabled:opacity-50 disabled:cursor-not-allowed pr-12")}
-            />
-            <span className={cn("absolute inset-y-0 right-3 flex items-center text-sm pointer-events-none", subtleText)}>
-              mm
-            </span>
-          </div>
-          <p className={cn("text-xs", subtleText)}>
-            {t("form.pdfMargin.hint")}
-          </p>
-        </div>
-      )}
-
-      {outputFormat === "pdf" && pdfPreset !== "original" && (
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <Label htmlFor="pdfPaginateToggle" className="text-sm flex items-center gap-1">
-              {t("form.pdfPaginate.label")}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <span>
-                    <Info className={cn("h-4 w-4 cursor-pointer", subtleText)} />
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent
-                  side="top"
-                  className={cn("p-2 rounded shadow-lg whitespace-pre-line border", tooltipSurface)}
-                >
-                  <p className="text-sm">{tooltipContent.pdfPaginate}</p>
-                </TooltipContent>
-              </Tooltip>
-            </Label>
-            <Switch
-              data-testid="pdf-paginate-switch"
-              id="pdfPaginateToggle"
-              checked={pdfPaginate}
-              onCheckedChange={setPdfPaginate}
-              disabled={isLoading}
-            />
-          </div>
-        </div>
-      )}
 
       {/* JPEG/AVIF controls mode */}
       {(outputFormat === "jpeg" || outputFormat === "avif") && (
@@ -480,40 +272,6 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
             >
               {t("form.compressionMode.bySize")}
             </Button>
-          </div>
-        </div>
-      )}
-
-      {/* PNG/AVIF background removal */}
-      {(outputFormat === "png" || outputFormat === "avif") && (
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <Label
-              htmlFor="rembgToggle"
-              className="text-sm flex items-center gap-1"
-            >
-              {t("form.rembg.label", { model: rembgLabel })}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <span>
-                    <Info className={cn("h-4 w-4 cursor-pointer", subtleText)} />
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent
-                  side="top"
-                  className={cn("p-2 rounded shadow-lg whitespace-pre-line border", tooltipSurface)}
-                >
-                  <p className="text-sm">{tooltipContent.rembg}</p>
-                </TooltipContent>
-              </Tooltip>
-            </Label>
-            <Switch
-              data-testid="rembg-switch"
-              id="rembgToggle"
-              checked={useRembg}
-              onCheckedChange={setUseRembg}
-              disabled={isLoading}
-            />
           </div>
         </div>
       )}
@@ -672,7 +430,7 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
                 setWidth("");
               }
             }}
-            disabled={isLoading || (outputFormat === "pdf" && pdfPreset !== "original")}
+            disabled={isLoading}
           />
         </div>
         {resizeWidthEnabled && (

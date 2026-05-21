@@ -9,12 +9,14 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ARG BUILD_MODE=server
 ENV NEXT_BUILD_MODE=${BUILD_MODE}
+ENV CI=true
 RUN corepack enable && pnpm run build
 
 FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+RUN mkdir -p /app/uploads /app/outputs && chown -R nextjs:nodejs /app/uploads /app/outputs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static

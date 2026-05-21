@@ -1,13 +1,39 @@
 services:
-  imgcompress:
-    build: .
-    image: karimz1/imgcompress:latest
-    container_name: imgcompress
-    restart: always
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        BUILD_MODE: server
+    image: karimz1/imgcompress-imgproxy-wrapper-frontend:latest
     ports:
-      - "3001:5000"
+      - "3000:3000"
     environment:
-      # Set to true to remove the mascot and enable a minimal, mascot-free UI
-      - DISABLE_LOGO=false
-      # Set to true to disable the storage management features (e.g., for your users to not see all the files)
-      - DISABLE_STORAGE_MANAGEMENT=false
+      ENGINE_LABEL: "imgproxy (Go)"
+      IMGPROXY_URL: http://imgproxy:8082
+      IMGPROXY_UPLOADS_DIR: /app/uploads
+      IMGPROXY_OUTPUTS_DIR: /app/outputs
+    volumes:
+      - uploads:/app/uploads
+      - outputs:/app/outputs
+    depends_on:
+      imgproxy:
+        condition: service_healthy
+
+  imgproxy:
+    image: darthsim/imgproxy:latest
+    environment:
+      IMGPROXY_LOCAL_FILESYSTEM_ROOT: /uploads
+      IMGPROXY_MAX_SRC_RESOLUTION: 500
+      IMGPROXY_JPEG_PROGRESSIVE: "true"
+      IMGPROXY_BIND: ":8082"
+    volumes:
+      - uploads:/uploads
+    healthcheck:
+      test: ["CMD", "imgproxy", "health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  uploads:
+  outputs:

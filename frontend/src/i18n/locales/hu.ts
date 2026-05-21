@@ -64,11 +64,11 @@ export const hu: TranslationSchema = {
         jpeg: "JPEG (kisebb fájlméret)",
         png: "PNG (átlátszóság megőrzése)",
         avif: "AVIF (legjobb tömörítés & minőség)",
-        pdf: "PDF (egyoldalas dokumentum)",
+        pdf: "PDF (imgproxy módban nem elérhető)",
         ico: "ICO (átlátszóság megőrzése)",
       },
       tooltip:
-        "PNG: Megőrzi az átlátszóságot (alfa), legjobb átlátszó hátterű képekhez.\nJPEG: Átlátszóság nélküli képekhez ideális, kisebb fájlméretet eredményez.\nAVIF: Modern formátum kiváló tömörítéssel és minőséggel, támogatja az átlátszóságot.\nPDF: Képek exportálása PDF-be opcionális oldalbeállításokkal, margókkal és többoldalas felosztással.\nICO: Favicon és alkalmazásikonok esetén használatos, támogatja az átlátszóságot (alfa). ICO konverzióhoz PNG forrás ajánlott.",
+        "PNG: Megőrzi az átlátszóságot (alfa), legjobb átlátszó hátterű képekhez.\nJPEG: Átlátszóság nélküli képekhez ideális, kisebb fájlméretet eredményez.\nAVIF: Modern formátum kiváló tömörítéssel és minőséggel, támogatja az átlátszóságot.\nWebP/GIF/TIFF: További imgproxy kimeneti formátumok.\nICO: Favicon és alkalmazásikonok esetén használatos, támogatja az átlátszóságot (alfa). ICO konverzióhoz PNG forrás ajánlott.",
     },
     pdfPreset: {
       label: "PDF oldalbeállítás",
@@ -139,9 +139,9 @@ export const hu: TranslationSchema = {
         "A kép(ek) átméretezése a kívánt szélességre, az eredeti képarány megtartásával.",
     },
     dropzone: {
-      dragActive: "Ejtsd ide a képeket vagy PDF-eket...",
+      dragActive: "Ejtsd ide a képeket...",
       processing: "Feldolgozás közben nem lehet fájlokat húzni...",
-      idle: "Húzd ide a képeket vagy PDF-eket, vagy kattints a kiválasztáshoz",
+      idle: "Húzd ide a képeket, vagy kattints a kiválasztáshoz",
     },
     filesList: {
       label: "Konvertálandó fájlok:",

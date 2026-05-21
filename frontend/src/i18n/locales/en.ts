@@ -62,11 +62,11 @@ export const en = {
         jpeg: "JPEG (smaller file size)",
         png: "PNG (preserves transparency)",
         avif: "AVIF (best compression & quality)",
-        pdf: "PDF (single-page document)",
+        pdf: "PDF (not available in imgproxy mode)",
         ico: "ICO (preserves transparency)",
       },
       tooltip:
-        "PNG: Preserves transparency (alpha) and is best for images with transparent backgrounds.\nJPEG: Ideal for images without transparency and produces smaller file sizes.\nAVIF: Modern format with superior compression and quality, supports transparency.\nPDF: Export images into PDFs with optional page presets, margins, and multi-page splitting.\nICO: Commonly used for favicons and application icons, supports transparency (alpha). Recommended to use PNG as the source when converting to ICO.",
+        "PNG: Preserves transparency (alpha) and is best for images with transparent backgrounds.\nJPEG: Ideal for images without transparency and produces smaller file sizes.\nAVIF: Modern format with superior compression and quality, supports transparency.\nWebP/GIF/TIFF: Additional imgproxy output formats.\nICO: Commonly used for favicons and application icons, supports transparency (alpha). Recommended to use PNG as the source when converting to ICO.",
     },
     pdfPreset: {
       label: "PDF Page Preset",
@@ -136,9 +136,9 @@ export const en = {
         "Resizes the image(s) to the desired width while preserving the original aspect ratio.",
     },
     dropzone: {
-      dragActive: "Drop images or PDFs here...",
+      dragActive: "Drop images here...",
       processing: "Cannot drop files while processing...",
-      idle: "Drag & drop images or PDFs here, or click to select",
+      idle: "Drag & drop images here, or click to select",
     },
     filesList: {
       label: "Files to convert:",

@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "File not found" }, { status: 404 });
   }
 
-  return new NextResponse(data, {
+  return new NextResponse(data.buffer as ArrayBuffer, {
     headers: {
       "Content-Disposition": `attachment; filename="${filename}"`,
       "Content-Type": "application/octet-stream",

@@ -1,0 +1,13 @@
+.DS_Store
+*.log
+
+node_modules/
+.pnpm-store/
+.next/
+out/
+build/
+coverage/
+test-results/
+playwright-report/
+
+.idea/

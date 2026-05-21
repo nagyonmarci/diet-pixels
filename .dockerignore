@@ -1,25 +1,15 @@
-# General exclusions
-.devcontainer/
-*.pyc
-__pycache__/
 .git/
-.github/
-.pytest_cache/
 .DS_Store
 *.log
-*.txt
 
-# Explicitly include requirements files (override *.txt above)
-!requirements.txt
-!requirements-dev.txt
+node_modules/
+.pnpm-store/
+.next/
+out/
+build/
+coverage/
+test-results/
+playwright-report/
 
-# Exclude other unnecessary files
-README.md
-LICENSE
-
-# Frontend build artifacts (can be very large from local dev)
-frontend/.next/
-frontend/node_modules/
-frontend/out/
-.vscode/
 .idea/
+.vscode/

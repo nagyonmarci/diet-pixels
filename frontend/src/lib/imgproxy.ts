@@ -1,6 +1,6 @@
 import path from "path";
 
-const IMGPROXY_URL = process.env.IMGPROXY_URL ?? "http://localhost:8080";
+const IMGPROXY_URL = process.env.IMGPROXY_URL ?? "http://localhost:8082";
 
 export const UPLOADS_DIR =
   process.env.IMGPROXY_UPLOADS_DIR ?? "/tmp/imgproxy_uploads";
