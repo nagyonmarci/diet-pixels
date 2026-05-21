@@ -47,25 +47,60 @@ export async function compressToTargetSize(
   filename: string,
   format: string,
   targetBytes: number,
-  width?: number
+  width?: number,
+  sourceWidth?: number
 ): Promise<Buffer> {
-  let lo = 1,
-    hi = 100;
-  let best: Buffer | null = null;
+  const selectedWidth = width && width > 0 ? width : undefined;
 
-  while (lo <= hi) {
-    const q = Math.floor((lo + hi) / 2);
-    const buf = await callImgproxy(filename, format, q, width);
+  const findBestQuality = async (candidateWidth?: number) => {
+    let lo = 1,
+      hi = 100;
+    let best: Buffer | null = null;
+
+    while (lo <= hi) {
+      const q = Math.floor((lo + hi) / 2);
+      const buf = await callImgproxy(filename, format, q, candidateWidth);
+      if (buf.length <= targetBytes) {
+        best = buf;
+        lo = q + 1;
+      } else {
+        hi = q - 1;
+      }
+    }
+
+    return best;
+  };
+
+  const bestAtRequestedDimensions = await findBestQuality(selectedWidth);
+  if (bestAtRequestedDimensions) return bestAtRequestedDimensions;
+
+  const maxWidth = selectedWidth ?? sourceWidth;
+  if (!maxWidth || maxWidth <= 1) {
+    throw new Error("Unable to reach target size with quality adjustment alone.");
+  }
+
+  let widthLo = 1;
+  let widthHi = maxWidth;
+  let bestWidth: number | null = null;
+
+  while (widthLo <= widthHi) {
+    const candidateWidth = Math.floor((widthLo + widthHi) / 2);
+    const buf = await callImgproxy(filename, format, 1, candidateWidth);
     if (buf.length <= targetBytes) {
-      best = buf;
-      lo = q + 1;
+      bestWidth = candidateWidth;
+      widthLo = candidateWidth + 1;
     } else {
-      hi = q - 1;
+      widthHi = candidateWidth - 1;
     }
   }
 
-  // If even quality=1 is too large, return it anyway (best effort)
-  return best ?? (await callImgproxy(filename, format, 1, width));
+  const best = bestWidth ? await findBestQuality(bestWidth) : null;
+
+  if (!best) {
+    throw new Error("Unable to reach target size, even at the smallest generated dimensions.");
+  }
+
+  return best;
 }
 
 export function buildOutputName(originalName: string, format: string): string {

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 import { randomUUID } from "crypto";
+import sharp from "sharp";
 import {
   callImgproxy,
   compressToTargetSize,
@@ -52,7 +53,14 @@ export async function POST(request: NextRequest) {
 
       let resultBuf: Buffer;
       if (targetSizeKb && (format === "jpeg" || format === "avif")) {
-        resultBuf = await compressToTargetSize(uploadName, format, targetSizeKb * 1024, width);
+        const metadata = await sharp(uploadPath).metadata();
+        resultBuf = await compressToTargetSize(
+          uploadName,
+          format,
+          targetSizeKb * 1024,
+          width,
+          metadata.width
+        );
       } else {
         resultBuf = await callImgproxy(uploadName, format, quality, width);
       }

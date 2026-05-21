@@ -87,7 +87,7 @@ export const hu: TranslationSchema = {
     },
     targetSize: {
       label: "Maximális fájlméret",
-      hint: "Megpróbálja az egyes {{format}} fájlokat ezen a határon belül tartani a minőség automatikus beállításával.",
+      hint: "Minden {{format}} fájlt a megadott határ alatt tart: először minőséget, szükség esetén képméretet csökkent.",
       tooltip:
         "Opcionális maximális kimeneti méret (MB-ban). JPEG és AVIF kimenethez érvényes.",
     },

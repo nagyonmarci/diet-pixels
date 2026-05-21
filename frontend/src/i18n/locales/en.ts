@@ -85,7 +85,7 @@ export const en = {
     },
     targetSize: {
       label: "Max file size",
-      hint: "It will try to keep each {{format}} at or below this size by automatically adjusting quality.",
+      hint: "It will keep each {{format}} at or below this size by adjusting quality first, then dimensions if needed.",
       tooltip:
         "Set an optional maximum output size (in MB). Applies to JPEG and AVIF output.",
     },
