@@ -92,6 +92,7 @@ function HomePageContent() {
   const { isDown } = useBackendHealth();
   const { resolvedTheme } = useTheme();
   const isDarkTheme = resolvedTheme !== "light";
+  const logoSrc = isDarkTheme ? "/dietpixels-logo-dark.png" : "/dietpixels-logo.png";
   const backgroundClass = isDarkTheme
     ? "bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-gray-50"
     : "bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900";
@@ -369,7 +370,7 @@ function HomePageContent() {
         <Card className={cn("w-full max-w-3xl border backdrop-blur-xl transition-colors", cardClass)}>
           <CardHeader className="pt-12 pb-10 flex flex-col items-center">
             <Image
-              src="/dietpixels-logo.png"
+              src={logoSrc}
               width={330}
               height={180}
               alt="DietPixels"

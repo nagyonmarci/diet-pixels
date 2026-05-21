@@ -242,7 +242,7 @@ export function SplashScreen({
               <div className="w-full flex justify-center animate-breathe">
                 <div className="relative h-[190px] w-[350px] max-w-[88vw] animate-glow">
                   <Image
-                    src="/dietpixels-logo.png"
+                    src="/dietpixels-logo-dark.png"
                     alt="DietPixels"
                     fill
                     draggable={false}
