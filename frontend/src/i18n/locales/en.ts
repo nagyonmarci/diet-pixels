@@ -172,10 +172,9 @@ export const en = {
   errorModal: {
     title: "Error Occurred",
     notifyDeveloper:
-      "Please open a ticket and notify the developer so this can be fixed ASAP.",
+      "You can copy the error details for local troubleshooting.",
     copyError: "Copy Error",
     copied: "Copied!",
-    openTicket: "Open Ticket",
     close: "Close",
   },
 
@@ -192,7 +191,6 @@ export const en = {
     unverifiedTitle: "Other possible formats",
     unverifiedHint: "These haven't been fully tested yet, but they might work!",
     footerText: "DietPixels uses imgproxy for conversion and compression.",
-    reportBug: "Report a bug",
   },
 
   starBanner: {
@@ -214,9 +212,18 @@ export const en = {
     links: {
       docs: "Docs",
       github: "GitHub",
-      reportBug: "Report a Bug",
       author: "Author",
       sponsor: "Sponsor",
+    },
+    recommendations: {
+      imgcompress: {
+        title: "Karimz imgcompress",
+        description: "The original workflow inspiration behind this small wrapper.",
+      },
+      imgproxy: {
+        title: "imgproxy",
+        description: "The Go image processing engine used for conversion and compression.",
+      },
     },
   },
 

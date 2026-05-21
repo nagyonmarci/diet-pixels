@@ -174,10 +174,9 @@ export const hu: TranslationSchema = {
   errorModal: {
     title: "Hiba történt",
     notifyDeveloper:
-      "Kérlek, nyiss egy hibajegyet, és értesítsd a fejlesztőt, hogy minél hamarabb megoldhassuk.",
+      "A hiba részleteit kimásolhatod helyi hibakereséshez.",
     copyError: "Hiba másolása",
     copied: "Másolva!",
-    openTicket: "Hibajegy megnyitása",
     close: "Bezárás",
   },
 
@@ -195,7 +194,6 @@ export const hu: TranslationSchema = {
     unverifiedTitle: "Egyéb lehetséges formátumok",
     unverifiedHint: "Ezeket még nem teszteltük teljesen, de előfordulhat, hogy működnek!",
     footerText: "A DietPixels az imgproxy-t használja konverzióra és tömörítésre.",
-    reportBug: "Hibát jelentek",
   },
 
   starBanner: {
@@ -217,9 +215,18 @@ export const hu: TranslationSchema = {
     links: {
       docs: "Dokumentáció",
       github: "GitHub",
-      reportBug: "Hiba bejelentése",
       author: "Szerző",
       sponsor: "Támogatás",
+    },
+    recommendations: {
+      imgcompress: {
+        title: "Karimz imgcompress",
+        description: "Az eredeti munkafolyamat, amelyből ez a kis wrapper inspirálódott.",
+      },
+      imgproxy: {
+        title: "imgproxy",
+        description: "A Go alapú képfeldolgozó motor, amely a konverziót és tömörítést végzi.",
+      },
     },
   },
 

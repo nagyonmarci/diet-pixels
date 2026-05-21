@@ -17,7 +17,6 @@ export const APP_CONFIG = {
 
   // GitHub URLs
   GITHUB_REPO_URL: "https://github.com/karimz1/dietpixels",
-  GITHUB_ISSUES_URL: "https://github.com/karimz1/dietpixels/issues",
 
   // Other URLs
   AUTHOR_URL: "https://www.karimzouine.com",

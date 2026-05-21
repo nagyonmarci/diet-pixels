@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
-import { Info, ShieldCheck, FileType, Search, ArrowRight, Bug } from "lucide-react"
+import { Info, ShieldCheck, FileType, Search } from "lucide-react"
 import {
     Dialog,
     DialogContent,
@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { APP_CONFIG } from "@/lib/config"
 
 interface SupportedFormatsDialogProps {
     supportedExtensions: string[]
@@ -177,19 +176,10 @@ export function SupportedFormatsDialog({
                     </section>
                 </div>
 
-                <div className="p-5 bg-slate-50 dark:bg-black/40 border-t border-slate-200 dark:border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 transition-colors">
-                    <p className="text-[11px] text-slate-700 dark:text-slate-400 font-medium">
+                <div className="p-5 bg-slate-50 dark:bg-black/40 border-t border-slate-200 dark:border-slate-800/60 transition-colors">
+                    <p className="text-center text-[11px] text-slate-700 dark:text-slate-400 font-medium">
                         {t("formatsDialog.footerText")}
                     </p>
-                    <a
-                        href={APP_CONFIG.GITHUB_ISSUES_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[11px] font-bold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-2"
-                    >
-                        <Bug className="h-3 w-3" />
-                        {t("formatsDialog.reportBug")} <ArrowRight className="h-3 w-3 opacity-50" />
-                    </a>
                 </div>
             </DialogContent>
         </Dialog>

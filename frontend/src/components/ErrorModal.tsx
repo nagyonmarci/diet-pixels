@@ -11,9 +11,8 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Copy, Check, LifeBuoy, XCircle, AlertTriangle } from "lucide-react";
+import { Copy, Check, XCircle, AlertTriangle } from "lucide-react";
 import { useErrorStore } from "@/context/ErrorStore";
-import { APP_CONFIG } from "@/lib/config";
 
 
 const ErrorModal = () => {
@@ -42,10 +41,6 @@ const ErrorModal = () => {
     navigator.clipboard.writeText(errorText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleOpenTicket = () => {
-    window.open(APP_CONFIG.GITHUB_ISSUES_URL, "_blank");
   };
 
   return (
@@ -98,14 +93,6 @@ const ErrorModal = () => {
                 <span className="ml-2">{t("errorModal.copyError")}</span>
               </>
             )}
-          </Button>
-          <Button
-            variant="outline"
-            className="flex items-center bg-gray-200 text-gray-900 border-gray-300 hover:bg-gray-300"
-            onClick={handleOpenTicket}
-          >
-            <LifeBuoy className="h-4 w-4" />
-            <span className="ml-2">{t("errorModal.openTicket")}</span>
           </Button>
           <Button
             className="flex items-center bg-gray-200 text-gray-900 border-gray-300 hover:bg-gray-300"

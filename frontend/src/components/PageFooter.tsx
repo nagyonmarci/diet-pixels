@@ -13,9 +13,21 @@ const PageFooter = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const links = [
     { href: APP_CONFIG.DOCS_URL, label: t("footer.links.docs") },
     { href: APP_CONFIG.GITHUB_REPO_URL, label: t("footer.links.github") },
-    { href: APP_CONFIG.GITHUB_ISSUES_URL, label: t("footer.links.reportBug") },
     { href: APP_CONFIG.AUTHOR_URL, label: t("footer.links.author") },
     { href: APP_CONFIG.SPONSOR_URL, label: t("footer.links.sponsor"), icon: Heart },
+  ];
+
+  const recommendations = [
+    {
+      href: APP_CONFIG.KARIMZ_IMGCOMPRESS_URL,
+      title: t("footer.recommendations.imgcompress.title"),
+      description: t("footer.recommendations.imgcompress.description"),
+    },
+    {
+      href: APP_CONFIG.IMGPROXY_URL,
+      title: t("footer.recommendations.imgproxy.title"),
+      description: t("footer.recommendations.imgproxy.description"),
+    },
   ];
 
   return (
@@ -59,6 +71,25 @@ const PageFooter = (props: React.HTMLAttributes<HTMLDivElement>) => {
               </React.Fragment>
             );
           })}
+        </div>
+        <div className="grid gap-3 pt-2 sm:grid-cols-2">
+          {recommendations.map((repo) => (
+            <a
+              key={repo.href}
+              href={repo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-lg border border-border/50 bg-background/40 px-4 py-3 text-left transition-colors hover:border-foreground/30 hover:bg-muted/40"
+            >
+              <span className="flex items-center justify-between gap-3 text-sm font-semibold text-foreground">
+                {repo.title}
+                <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
+              </span>
+              <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                {repo.description}
+              </span>
+            </a>
+          ))}
         </div>
         {currentVersion && (
           <div className="text-xs text-muted-foreground/50 space-x-2">
