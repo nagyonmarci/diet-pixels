@@ -166,7 +166,6 @@ export const hu: TranslationSchema = {
     whyTitle: "Miért van ez itt?",
     whyDesc:
       "Ellenőrzi a tároló állapotát és a hálózati izoláltságot a biztonság érdekében. Semmilyen kép vagy metaadat nem hagyja el a gépedet.",
-    learnMore: "Tudj meg többet az offline használatról →",
     backendLastCheck: "Háttérrendszer utolsó ellenőrzése:",
     internetLastCheck: "Internet utolsó ellenőrzése:",
   },
@@ -196,28 +195,7 @@ export const hu: TranslationSchema = {
     footerText: "A DietPixels az imgproxy-t használja konverzióra és tömörítésre.",
   },
 
-  starBanner: {
-    message: "Hasznosnak találtad a DietPixels-t?",
-    linkText: "Egy csillag a GitHubon",
-    suffix: "segít másoknak megtalálni.",
-    dismiss: "Ne mutasd többet",
-  },
-
-  help: {
-    label: "Használati útmutató",
-  },
-
   footer: {
-    updateAvailable: "Frissítés elérhető: {{version}}",
-    whatsNew: "Mi újság?",
-    version: "Verzió: {{version}}",
-    releaseNotes: "Kiadási megjegyzések",
-    links: {
-      docs: "Dokumentáció",
-      github: "GitHub",
-      author: "Szerző",
-      sponsor: "Támogatás",
-    },
     recommendations: {
       imgcompress: {
         title: "Karimz imgcompress",
@@ -228,20 +206,6 @@ export const hu: TranslationSchema = {
         description: "A Go alapú képfeldolgozó motor, amely a konverziót és tömörítést végzi.",
       },
     },
-  },
-
-  releaseNotes: {
-    buttonLabel: "Kiadási megjegyzések",
-    title: "Kiadási megjegyzések",
-    infoBoxText: "Ezek a jegyzetek a DietPixels-t, az önálló imgproxy wrappert írják le.",
-    infoBoxLink: "A projekt README-je",
-    infoBoxSuffix: "tartalmazza a telepítési és architektúra részleteket.",
-    loading: "Betöltés…",
-    loadError: "Nem sikerült betölteni a kiadási megjegyzéseket",
-    empty: "Nincsenek elérhető kiadási megjegyzések.",
-    tabLatest: "Legújabb",
-    tabArchive: "Archívum",
-    noArchive: "Még nincs archivált kiadás.",
   },
 
   langSwitcher: {

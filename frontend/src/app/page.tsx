@@ -9,7 +9,6 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { HardDrive } from "lucide-react";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { HelpButton } from "@/components/HelpButton";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
   Drawer,
@@ -454,10 +453,6 @@ function HomePageContent() {
             </Drawer>
           </>
         )}
-
-        <div className="fixed bottom-4 left-4 z-40">
-          <HelpButton />
-        </div>
 
         {converted.length > 0 && (
           <CompressedFilesDrawer

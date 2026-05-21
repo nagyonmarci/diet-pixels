@@ -5,7 +5,6 @@ import { useBackendHealth } from "@/hooks/useBackendHealth";
 import { useInternetHealth } from "@/hooks/useInternetHealth";
 import { Network, X } from "lucide-react";
 import { useState } from "react";
-import { APP_CONFIG } from "@/lib/config";
 
 export function BackendStatusFloating() {
   const { t } = useTranslation();
@@ -83,14 +82,6 @@ export function BackendStatusFloating() {
               {t("statusFloating.whyDesc")}
             </p>
 
-            <a
-              href={APP_CONFIG.DOCS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline opacity-80 hover:opacity-100 inline-block"
-            >
-              {t("statusFloating.learnMore")}
-            </a>
           </div>
 
           <p className="text-xs opacity-40 pt-2">

@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/drawer";
 import { toast, ToastContainer } from "react-toastify";
 import { FileDown } from "lucide-react";
-import GitHubStarBanner from "@/components/GitHubStarBanner";
 
 interface CompressedFilesDrawerProps {
   converted: string[];
@@ -74,7 +73,6 @@ const CompressedFilesDrawer: React.FC<CompressedFilesDrawerProps> = ({
               {t("drawer.description", { count })}
             </DrawerDescription>
           </DrawerHeader>
-          <GitHubStarBanner compressionId={converted.join(",")} />
           <div className="p-1 pb-0 flex flex-col items-center">
             {converted.length > 1 && (
               <div className="text-center p-5">

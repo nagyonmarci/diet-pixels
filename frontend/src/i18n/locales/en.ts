@@ -164,7 +164,6 @@ export const en = {
     whyTitle: "Why this exists?",
     whyDesc:
       "Verifies container health and network isolation for security. No images or metadata ever leave your machine.",
-    learnMore: "Learn more about offline usage →",
     backendLastCheck: "Backend Last Check:",
     internetLastCheck: "Internet Last Check:",
   },
@@ -193,28 +192,7 @@ export const en = {
     footerText: "DietPixels uses imgproxy for conversion and compression.",
   },
 
-  starBanner: {
-    message: "Found DietPixels useful?",
-    linkText: "A star on GitHub",
-    suffix: "helps others discover it.",
-    dismiss: "Don't show again",
-  },
-
-  help: {
-    label: "How to Use",
-  },
-
   footer: {
-    updateAvailable: "Update available: {{version}}",
-    whatsNew: "What's new",
-    version: "Version {{version}}",
-    releaseNotes: "Release Notes",
-    links: {
-      docs: "Docs",
-      github: "GitHub",
-      author: "Author",
-      sponsor: "Sponsor",
-    },
     recommendations: {
       imgcompress: {
         title: "Karimz imgcompress",
@@ -225,20 +203,6 @@ export const en = {
         description: "The Go image processing engine used for conversion and compression.",
       },
     },
-  },
-
-  releaseNotes: {
-    buttonLabel: "Release Notes",
-    title: "Release Notes",
-    infoBoxText: "These notes describe DietPixels, a standalone imgproxy wrapper.",
-    infoBoxLink: "Project README",
-    infoBoxSuffix: "has setup and architecture details.",
-    loading: "Loading…",
-    loadError: "Failed to load release notes",
-    empty: "No release notes available.",
-    tabLatest: "Latest",
-    tabArchive: "Archive",
-    noArchive: "No archived releases yet.",
   },
 
   langSwitcher: {
