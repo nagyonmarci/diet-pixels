@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDropzone } from "react-dropzone";
-import Image from "next/image";
 import { useTheme } from "next-themes";
 import { HardDrive } from "lucide-react";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -36,7 +35,6 @@ import { cn } from "@/lib/utils";
 
 function HomePageContent() {
   const { t } = useTranslation();
-  const [disableLogo, setDisableLogo] = useState(false);
   const [configReady, setConfigReady] = useState(false);
   const [storageManagementDisabled, setStorageManagementDisabled] = useState(false);
 
@@ -46,13 +44,11 @@ function HomePageContent() {
         const res = await fetch("/config/runtime.json");
         if (!res.ok) throw new Error("Config not found");
         const config = await res.json();
-        setDisableLogo(config.DISABLE_LOGO === "true");
         const disableStorage =
           config.DISABLE_STORAGE_MANAGEMENT === "true";
         setStorageManagementDisabled(disableStorage);
       } catch (err) {
-        console.warn("DISABLE_LOGO config missing or invalid, defaulting to false", err);
-        setDisableLogo(false);
+        console.warn("Runtime config missing or invalid, using defaults", err);
         setStorageManagementDisabled(false);
       } finally {
         setConfigReady(true);
@@ -358,7 +354,6 @@ function HomePageContent() {
       <SplashScreen
         isVisible={isLoading}
         onAbort={handleAbort}
-        disableLogo={configReady ? disableLogo : false}
       />
       <BackendStatusBanner backendDown={isDown} />
 
@@ -372,30 +367,16 @@ function HomePageContent() {
         </div>
         <ToastContainer />
         <Card className={cn("w-full max-w-3xl border backdrop-blur-xl transition-colors", cardClass)}>
-          {configReady && !disableLogo ? (
-            <CardHeader className="pt-12 pb-8 flex flex-col items-center">
-              <Image
-                src="/logo_transparent.png"
-                width={260}
-                height={260}
-                alt="ImgCompress - Image Compression Tool"
-                priority
-                draggable={false}
-                className="h-auto w-[220px] sm:w-[240px] md:w-[260px] drop-shadow-xl"
-              />
-            </CardHeader>
-          ) : (
-            <CardHeader className="pt-12 pb-10 flex flex-col items-center">
-              <CardTitle
-                className={`text-center text-3xl md:text-4xl font-bold tracking-tight ${cardTitleClass}`}
-              >
-                imgcompress
-              </CardTitle>
-              <p className="text-center text-sm md:text-base text-muted-foreground mt-2">
-                {t("page.subtitle")}
-              </p>
-            </CardHeader>
-          )}
+          <CardHeader className="pt-12 pb-10 flex flex-col items-center">
+            <CardTitle
+              className={`text-center text-3xl md:text-4xl font-bold tracking-tight ${cardTitleClass}`}
+            >
+              ProxyPress
+            </CardTitle>
+            <p className="text-center text-sm md:text-base text-muted-foreground mt-2">
+              {t("page.subtitle")}
+            </p>
+          </CardHeader>
           <CardContent className="px-6 pb-8 sm:px-10 sm:pb-12">
             <FileConversionForm
               isLoading={isLoading}

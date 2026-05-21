@@ -1,6 +1,6 @@
 export const en = {
   page: {
-    subtitle: "An Image Compression Tool",
+    subtitle: "A personal image compression UI mixing Karimz's imgcompress workflow with imgproxy.",
     adminTools: "Admin Tools",
     toast: {
       unsupportedFormat: "Unsupported File Format: {{fileName}}",
@@ -191,12 +191,12 @@ export const en = {
     verifiedTitle: "Tested & Working",
     unverifiedTitle: "Other possible formats",
     unverifiedHint: "These haven't been fully tested yet, but they might work!",
-    footerText: "This wrapper uses imgproxy for conversion and compression.",
+    footerText: "ProxyPress uses imgproxy for conversion and compression.",
     reportBug: "Report a bug",
   },
 
   starBanner: {
-    message: "Found this imgproxy wrapper useful?",
+    message: "Found ProxyPress useful?",
     linkText: "A star on GitHub",
     suffix: "helps others discover it.",
     dismiss: "Don't show again",
@@ -223,7 +223,7 @@ export const en = {
   releaseNotes: {
     buttonLabel: "Release Notes",
     title: "Release Notes",
-    infoBoxText: "These notes describe this standalone imgproxy wrapper.",
+    infoBoxText: "These notes describe ProxyPress, a standalone imgproxy wrapper.",
     infoBoxLink: "Project README",
     infoBoxSuffix: "has setup and architecture details.",
     loading: "Loading…",

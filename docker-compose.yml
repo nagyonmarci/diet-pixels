@@ -1,14 +1,16 @@
+name: proxypress
+
 services:
   frontend:
     build:
       context: ./frontend
       args:
         BUILD_MODE: server
-    image: karimz1/imgcompress-imgproxy-wrapper-frontend:latest
+    image: proxypress-frontend:latest
     ports:
       - "3000:3000"
     environment:
-      ENGINE_LABEL: "imgproxy (Go)"
+      ENGINE_LABEL: "ProxyPress + imgproxy (Go)"
       IMGPROXY_URL: http://imgproxy:8082
       IMGPROXY_UPLOADS_DIR: /app/uploads
       IMGPROXY_OUTPUTS_DIR: /app/outputs

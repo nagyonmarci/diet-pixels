@@ -2,7 +2,6 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Image from "next/image";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@/components/visually-hidden";
 import { cn } from "@/lib/utils";
@@ -10,7 +9,6 @@ import { cn } from "@/lib/utils";
 interface SplashScreenProps {
   isVisible: boolean;
   onAbort: () => void;
-  disableLogo?: boolean;
 }
 
 
@@ -36,7 +34,6 @@ type ParticleStyle = React.CSSProperties & {
 export function SplashScreen({
   isVisible,
   onAbort,
-  disableLogo = false,
 }: SplashScreenProps) {
   const { t } = useTranslation();
   const [messageIndex, setMessageIndex] = useState(0);
@@ -241,20 +238,11 @@ export function SplashScreen({
             </div>
 
             <div className="relative z-10 flex flex-col items-center w-full max-w-4xl gap-8">
-              {!disableLogo && (
-                <div className="w-full flex justify-center animate-breathe">
-                  <div className="relative w-[460px] h-[220px] max-w-[92vw] sm:w-[520px] sm:h-[240px] animate-glow after:absolute after:inset-0 after:rounded-[36%] after:bg-gradient-to-r after:from-blue-500/20 after:to-fuchsia-500/20 after:blur-3xl after:-z-10">
-                    <Image
-                      src="/logo_transparent.png"
-                      alt="ImgCompress Logo"
-                      fill
-                      draggable={false}
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
+              <div className="w-full flex justify-center animate-breathe">
+                <div className="animate-glow rounded-2xl border border-white/15 bg-white/10 px-8 py-5 text-3xl font-bold tracking-wide text-white shadow-2xl shadow-blue-500/10 backdrop-blur-md">
+                  ProxyPress
                 </div>
-              )}
+              </div>
 
               <div className="w-full flex flex-col items-center gap-5">
                 {/* Animated message area */}

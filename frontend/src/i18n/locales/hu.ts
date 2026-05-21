@@ -2,7 +2,7 @@ import type { TranslationSchema } from "../types";
 
 export const hu: TranslationSchema = {
   page: {
-    subtitle: "Képtömörítő Eszköz",
+    subtitle: "Saját célú képtömörítő UI Karimz imgcompress munkafolyamatából és az imgproxy-ból keverve.",
     adminTools: "Adminisztrációs Eszközök",
     toast: {
       unsupportedFormat: "Nem támogatott fájlformátum: {{fileName}}",
@@ -194,12 +194,12 @@ export const hu: TranslationSchema = {
     verifiedTitle: "Tesztelt és működő",
     unverifiedTitle: "Egyéb lehetséges formátumok",
     unverifiedHint: "Ezeket még nem teszteltük teljesen, de előfordulhat, hogy működnek!",
-    footerText: "Ez a wrapper az imgproxy-t használja konverzióra és tömörítésre.",
+    footerText: "A ProxyPress az imgproxy-t használja konverzióra és tömörítésre.",
     reportBug: "Hibát jelentek",
   },
 
   starBanner: {
-    message: "Hasznosnak találtad ezt az imgproxy wrappert?",
+    message: "Hasznosnak találtad a ProxyPress-t?",
     linkText: "Egy csillag a GitHubon",
     suffix: "segít másoknak megtalálni.",
     dismiss: "Ne mutasd többet",
@@ -226,7 +226,7 @@ export const hu: TranslationSchema = {
   releaseNotes: {
     buttonLabel: "Kiadási megjegyzések",
     title: "Kiadási megjegyzések",
-    infoBoxText: "Ezek a jegyzetek az önálló imgproxy wrappert írják le.",
+    infoBoxText: "Ezek a jegyzetek a ProxyPress-t, az önálló imgproxy wrappert írják le.",
     infoBoxLink: "A projekt README-je",
     infoBoxSuffix: "tartalmazza a telepítési és architektúra részleteket.",
     loading: "Betöltés…",

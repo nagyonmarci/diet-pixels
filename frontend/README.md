@@ -1,6 +1,10 @@
-# Frontend
+# ProxyPress Frontend
 
-Next.js app for the imgproxy wrapper.
+Next.js app for ProxyPress, a small image compression UI that wraps
+`darthsim/imgproxy`.
+
+The app borrows frontend/workflow ideas from Karim Zouine's `imgcompress` and
+delegates actual image processing to the `imgproxy` project.
 
 ## Scripts
 

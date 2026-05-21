@@ -1,3 +1,7 @@
-Repository: https://github.com/karimz1/imgcompress-imgproxy-wrapper
+Project: ProxyPress
 
-Tool by Karim Zouine. Frontend/API wrapper built with Next.js and imgproxy.
+Attribution:
+- Frontend/workflow inspiration: Karim Zouine's imgcompress project
+- Image processing backend: imgproxy via darthsim/imgproxy
+
+This is a personal-purpose remix/wrapper, not an official release of either project.

@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import { Star } from "lucide-react";
 import { APP_CONFIG } from "@/lib/config";
 
-const DISMISSED_KEY = "imgcompress_github_star_dismissed";
-const CONVERSIONS_KEY = "imgcompress_conversion_count";
-const LAST_COMPRESSION_KEY = "imgcompress_last_compression_id";
+const DISMISSED_KEY = "proxypress_github_star_dismissed";
+const CONVERSIONS_KEY = "proxypress_conversion_count";
+const LAST_COMPRESSION_KEY = "proxypress_last_compression_id";
 
 interface GitHubStarBannerProps {
   compressionId: string;

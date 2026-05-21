@@ -1,7 +1,8 @@
 ## v0.1.0 — 2026-05-21
-- Split the imgproxy wrapper into a standalone app.
+- Rename the standalone wrapper to ProxyPress.
 - Keep only the Next.js frontend/API wrapper in this repository.
 - Use `darthsim/imgproxy:latest` as the Go-based image processing backend.
-- Build the frontend image as `karimz1/imgcompress-imgproxy-wrapper-frontend:latest`.
+- Build the frontend image as `proxypress-frontend:latest`.
+- Add explicit attribution for Karim Zouine's imgcompress and the imgproxy project.
 - Remove unrelated image-processing code, background-removal workflow, document-output workflow, heavyweight sample files, old integration tests, and legacy Docker image build paths.
 - Support image conversion, resizing, quality-based compression, and target-size compression through imgproxy.
