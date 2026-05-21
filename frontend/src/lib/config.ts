@@ -1,17 +1,20 @@
 export const APP_CONFIG = {
+  PROJECT_REPO_URL: "https://github.com/karimz1/imgcompress-imgproxy-wrapper",
+
   // API endpoints
   LATEST_VERSION_API:
-    "https://api.github.com/repos/karimz1/imgcompress/releases/latest",
+    "https://api.github.com/repos/karimz1/imgcompress-imgproxy-wrapper/releases/latest",
 
   // Documentation URLs
-  DOCS_URL: "https://imgcompress.karimzouine.com",
-  DOCS_WEB_UI_URL: "https://imgcompress.karimzouine.com/web-ui/",
-  DOCS_RELEASE_NOTES_URL: "https://imgcompress.karimzouine.com/release-notes/",
-  DOCS_UPDATE_GUIDE_URL: "https://imgcompress.karimzouine.com/installation/#maintenance-updates",
+  DOCS_URL: "https://github.com/karimz1/imgcompress-imgproxy-wrapper#readme",
+  DOCS_WEB_UI_URL: "https://github.com/karimz1/imgcompress-imgproxy-wrapper#readme",
+  DOCS_RELEASE_NOTES_URL:
+    "https://github.com/karimz1/imgcompress-imgproxy-wrapper/blob/main/frontend/public/release-notes.md",
+  DOCS_UPDATE_GUIDE_URL: "https://github.com/karimz1/imgcompress-imgproxy-wrapper#run-with-docker-compose",
 
   // GitHub URLs
-  GITHUB_REPO_URL: "https://github.com/karimz1/imgcompress",
-  GITHUB_ISSUES_URL: "https://github.com/karimz1/imgcompress/issues",
+  GITHUB_REPO_URL: "https://github.com/karimz1/imgcompress-imgproxy-wrapper",
+  GITHUB_ISSUES_URL: "https://github.com/karimz1/imgcompress-imgproxy-wrapper/issues",
 
   // Other URLs
   AUTHOR_URL: "https://www.karimzouine.com",

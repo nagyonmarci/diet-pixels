@@ -64,57 +64,15 @@ export const hu: TranslationSchema = {
         jpeg: "JPEG (kisebb fájlméret)",
         png: "PNG (átlátszóság megőrzése)",
         avif: "AVIF (legjobb tömörítés & minőség)",
-        pdf: "PDF (imgproxy módban nem elérhető)",
         ico: "ICO (átlátszóság megőrzése)",
       },
       tooltip:
         "PNG: Megőrzi az átlátszóságot (alfa), legjobb átlátszó hátterű képekhez.\nJPEG: Átlátszóság nélküli képekhez ideális, kisebb fájlméretet eredményez.\nAVIF: Modern formátum kiváló tömörítéssel és minőséggel, támogatja az átlátszóságot.\nWebP/GIF/TIFF: További imgproxy kimeneti formátumok.\nICO: Favicon és alkalmazásikonok esetén használatos, támogatja az átlátszóságot (alfa). ICO konverzióhoz PNG forrás ajánlott.",
     },
-    pdfPreset: {
-      label: "PDF oldalbeállítás",
-      disabledHint: "A szélességátméretezés le van tiltva, amíg PDF-beállítás aktív.",
-      tooltip:
-        "Az A4/Letter beállítások a képet az oldalra méretezik, konfigurálható nyomtatási margóval. Az automatikus beállítások a kép tájolása alapján forgatják az oldalt.",
-      options: {
-        original: "Eredeti (arányok megtartása)",
-        a4Auto: "A4 Automatikus",
-        a4Portrait: "A4 Álló",
-        a4Landscape: "A4 Fekvő",
-        letterAuto: "Letter Automatikus",
-        letterPortrait: "Letter Álló",
-        letterLandscape: "Letter Fekvő",
-        mobilePortrait: "Mobil Álló (1080x1920)",
-        mobileLandscape: "Mobil Fekvő (1920x1080)",
-      },
-    },
-    pdfScale: {
-      label: "PDF méretezési mód",
-      paginationHint: "Oldalazás esetén Illesztés módot használ a teljes szélesség megőrzéséhez.",
-      tooltip:
-        "Az Illesztés megőrzi a teljes képet esetleges fehér sávokkal. A Kitöltés az oldalt lefedő kivágást alkalmaz.",
-      options: {
-        fit: "Illesztés (teljes kép megőrzése)",
-        fill: "Kitöltés (levágás az oldalra)",
-      },
-    },
-    pdfMargin: {
-      label: "PDF margó",
-      hint: "10mm ajánlott és ez az alapértelmezett érték.",
-      tooltip: "A nyomtatási margó beállítása milliméterben. 10mm ajánlott.",
-    },
-    pdfPaginate: {
-      label: "Hosszú képek felosztása több oldalra",
-      tooltip: "Hosszú képeket több oldalra oszt, ha PDF-beállítás aktív.",
-    },
     compressionMode: {
       label: "{{format}} beállítási mód",
       byQuality: "Minőség alapján",
       bySize: "Fájlméret alapján",
-    },
-    rembg: {
-      label: "Háttér eltávolítása helyi AI-val ({{model}})",
-      tooltip:
-        "A helyi AI eltávolítja a hátteret (internet nem szükséges).\nLassabb feldolgozás, esetleges kis él-artefaktumok.",
     },
     quality: {
       label: "Minőség",
@@ -232,16 +190,16 @@ export const hu: TranslationSchema = {
     descriptionEnd: "menüben választhatod meg a főképernyőn, miután bezárod ezt.",
     searchLabel: "Listakeresés",
     searchHint: "Csak kezdj el gépelni a formátum megkereséséhez",
-    searchPlaceholder: "Keresés (pl. psd, tiff)...",
+    searchPlaceholder: "Keresés (pl. webp, tiff)...",
     verifiedTitle: "Tesztelt és működő",
     unverifiedTitle: "Egyéb lehetséges formátumok",
     unverifiedHint: "Ezeket még nem teszteltük teljesen, de előfordulhat, hogy működnek!",
-    footerText: "Az ImgCompress segít képeid konvertálásában!",
+    footerText: "Ez a wrapper az imgproxy-t használja konverzióra és tömörítésre.",
     reportBug: "Hibát jelentek",
   },
 
   starBanner: {
-    message: "Hasznosnak találtad az ImgCompress-t?",
+    message: "Hasznosnak találtad ezt az imgproxy wrappert?",
     linkText: "Egy csillag a GitHubon",
     suffix: "segít másoknak megtalálni.",
     dismiss: "Ne mutasd többet",
@@ -268,9 +226,9 @@ export const hu: TranslationSchema = {
   releaseNotes: {
     buttonLabel: "Kiadási megjegyzések",
     title: "Kiadási megjegyzések",
-    infoBoxText: "Tekintsd meg a",
-    infoBoxLink: "teljes kiadási megjegyzéseket",
-    infoBoxSuffix: "az összes verzióhoz és részlethez.",
+    infoBoxText: "Ezek a jegyzetek az önálló imgproxy wrappert írják le.",
+    infoBoxLink: "A projekt README-je",
+    infoBoxSuffix: "tartalmazza a telepítési és architektúra részleteket.",
     loading: "Betöltés…",
     loadError: "Nem sikerült betölteni a kiadási megjegyzéseket",
     empty: "Nincsenek elérhető kiadási megjegyzések.",

@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Copy, Check, LifeBuoy, XCircle, AlertTriangle } from "lucide-react";
 import { useErrorStore } from "@/context/ErrorStore";
+import { APP_CONFIG } from "@/lib/config";
 
 
 const ErrorModal = () => {
@@ -44,8 +45,7 @@ const ErrorModal = () => {
   };
 
   const handleOpenTicket = () => {
-    
-    window.open("https://github.com/karimz1/imgcompress/issues", "_blank");
+    window.open(APP_CONFIG.GITHUB_ISSUES_URL, "_blank");
   };
 
   return (

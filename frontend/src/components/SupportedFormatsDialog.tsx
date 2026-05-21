@@ -13,10 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-
-const APP_CONFIG = {
-    GITHUB_ISSUES_URL: "https://github.com/karimz1/imgcompress/issues",
-}
+import { APP_CONFIG } from "@/lib/config"
 
 interface SupportedFormatsDialogProps {
     supportedExtensions: string[]

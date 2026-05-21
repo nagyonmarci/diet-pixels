@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Megaphone } from "lucide-react"
+import { APP_CONFIG } from "@/lib/config"
 
 interface ReleaseEntry {
   version: string
@@ -196,7 +197,7 @@ const InfoBox = () => {
       <p className="text-xs text-muted-foreground leading-relaxed">
         {t("releaseNotes.infoBoxText")}{" "}
         <a
-          href="https://imgcompress.karimzouine.com/release-notes/"
+          href={APP_CONFIG.DOCS_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-2 hover:text-foreground transition-colors"

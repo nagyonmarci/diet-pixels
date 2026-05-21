@@ -62,56 +62,15 @@ export const en = {
         jpeg: "JPEG (smaller file size)",
         png: "PNG (preserves transparency)",
         avif: "AVIF (best compression & quality)",
-        pdf: "PDF (not available in imgproxy mode)",
         ico: "ICO (preserves transparency)",
       },
       tooltip:
         "PNG: Preserves transparency (alpha) and is best for images with transparent backgrounds.\nJPEG: Ideal for images without transparency and produces smaller file sizes.\nAVIF: Modern format with superior compression and quality, supports transparency.\nWebP/GIF/TIFF: Additional imgproxy output formats.\nICO: Commonly used for favicons and application icons, supports transparency (alpha). Recommended to use PNG as the source when converting to ICO.",
     },
-    pdfPreset: {
-      label: "PDF Page Preset",
-      disabledHint: "Resize Width is disabled while a PDF preset is selected.",
-      tooltip:
-        "A4/Letter presets scale the image to the page with a configurable print-safe margin. Auto presets rotate the page based on image orientation.",
-      options: {
-        original: "Original (keep proportions)",
-        a4Auto: "A4 Auto",
-        a4Portrait: "A4 Portrait",
-        a4Landscape: "A4 Landscape",
-        letterAuto: "Letter Auto",
-        letterPortrait: "Letter Portrait",
-        letterLandscape: "Letter Landscape",
-        mobilePortrait: "Mobile Portrait (1080x1920)",
-        mobileLandscape: "Mobile Landscape (1920x1080)",
-      },
-    },
-    pdfScale: {
-      label: "PDF Scale Mode",
-      paginationHint: "Pagination uses Fit mode to preserve full width.",
-      tooltip: "Fit preserves the entire image with possible white bars. Fill crops to cover the page.",
-      options: {
-        fit: "Fit (preserve full image)",
-        fill: "Fill (crop to page)",
-      },
-    },
-    pdfMargin: {
-      label: "PDF Margin",
-      hint: "10mm is recommended and the default.",
-      tooltip: "Set the print-safe border in millimeters. 10mm is recommended.",
-    },
-    pdfPaginate: {
-      label: "Split long images into multiple pages",
-      tooltip: "Splits long images into multiple pages when a PDF preset is selected.",
-    },
     compressionMode: {
       label: "{{format}} settings mode",
       byQuality: "Set by Quality",
       bySize: "Set by File Size",
-    },
-    rembg: {
-      label: "Remove background with local AI ({{model}})",
-      tooltip:
-        "Local AI removes background (no internet required).\nSlower processing, may show small edge artifacts.",
     },
     quality: {
       label: "Quality",
@@ -228,16 +187,16 @@ export const en = {
     descriptionEnd: "menu on the main screen after you close this.",
     searchLabel: "Search list",
     searchHint: "Just type to find a format",
-    searchPlaceholder: "Search (e.g. psd, tiff)...",
+    searchPlaceholder: "Search (e.g. webp, tiff)...",
     verifiedTitle: "Tested & Working",
     unverifiedTitle: "Other possible formats",
     unverifiedHint: "These haven't been fully tested yet, but they might work!",
-    footerText: "ImgCompress here to help you convert your images!",
+    footerText: "This wrapper uses imgproxy for conversion and compression.",
     reportBug: "Report a bug",
   },
 
   starBanner: {
-    message: "Found ImgCompress useful?",
+    message: "Found this imgproxy wrapper useful?",
     linkText: "A star on GitHub",
     suffix: "helps others discover it.",
     dismiss: "Don't show again",
@@ -264,9 +223,9 @@ export const en = {
   releaseNotes: {
     buttonLabel: "Release Notes",
     title: "Release Notes",
-    infoBoxText: "View",
-    infoBoxLink: "complete release notes",
-    infoBoxSuffix: "for all versions and details.",
+    infoBoxText: "These notes describe this standalone imgproxy wrapper.",
+    infoBoxLink: "Project README",
+    infoBoxSuffix: "has setup and architecture details.",
     loading: "Loading…",
     loadError: "Failed to load release notes",
     empty: "No release notes available.",

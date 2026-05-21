@@ -45,7 +45,7 @@ the `imgproxy` service and shared upload/output volumes.
 
 ## Notes
 
-- The old Python backend is intentionally not part of this wrapper repo.
+- This wrapper repository does not include its own image-processing backend.
 - Target-size compression is handled by the wrapper choosing quality values and
   asking `imgproxy` to render each candidate.
 - Uploaded and converted files live in Docker volumes named `uploads` and

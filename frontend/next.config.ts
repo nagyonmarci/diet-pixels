@@ -39,16 +39,7 @@ const getNextConfig = () => {
     };
   }
 
-  // ------------------------------
-  // EXPORT MODE (build / CI / prod)
-  // ------------------------------
-  return {
-    ...baseConfig,
-    output: 'export',
-    images: {
-      unoptimized: true,
-    },
-  };
+  return baseConfig;
 };
 
 module.exports = getNextConfig();
