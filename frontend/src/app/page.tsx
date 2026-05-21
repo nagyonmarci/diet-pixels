@@ -92,7 +92,6 @@ function HomePageContent() {
   const { isDown } = useBackendHealth();
   const { resolvedTheme } = useTheme();
   const isDarkTheme = resolvedTheme !== "light";
-  const logoSrc = isDarkTheme ? "/dietpixels-logo-dark.png" : "/dietpixels-logo.png";
   const backgroundClass = isDarkTheme
     ? "bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-gray-50"
     : "bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900";
@@ -369,15 +368,29 @@ function HomePageContent() {
         <ToastContainer />
         <Card className={cn("w-full max-w-3xl border backdrop-blur-xl transition-colors", cardClass)}>
           <CardHeader className="pt-12 pb-10 flex flex-col items-center">
-            <Image
-              src={logoSrc}
-              width={330}
-              height={180}
-              alt="DietPixels"
-              priority
-              draggable={false}
-              className="h-auto w-[240px] sm:w-[280px] md:w-[330px] drop-shadow-xl"
-            />
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <Image
+                src="/dietpixels-icon.png"
+                width={120}
+                height={133}
+                alt=""
+                aria-hidden="true"
+                priority
+                draggable={false}
+                className="h-24 w-auto sm:h-28 md:h-32 drop-shadow-xl"
+              />
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "text-4xl font-black tracking-normal sm:text-5xl md:text-6xl",
+                  isDarkTheme
+                    ? "text-stone-100 [text-shadow:0_2px_18px_rgba(255,244,224,0.16)]"
+                    : "text-[#3a2418]"
+                )}
+              >
+                DietPixels
+              </span>
+            </div>
             <CardTitle
               className={`sr-only ${cardTitleClass}`}
             >

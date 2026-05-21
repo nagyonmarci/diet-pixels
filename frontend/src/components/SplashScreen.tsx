@@ -240,15 +240,23 @@ export function SplashScreen({
 
             <div className="relative z-10 flex flex-col items-center w-full max-w-4xl gap-8">
               <div className="w-full flex justify-center animate-breathe">
-                <div className="relative h-[190px] w-[350px] max-w-[88vw] animate-glow">
+                <div className="flex max-w-[92vw] flex-col items-center justify-center gap-5 animate-glow sm:flex-row sm:gap-7">
                   <Image
-                    src="/dietpixels-logo-dark.png"
-                    alt="DietPixels"
-                    fill
+                    src="/dietpixels-icon.png"
+                    alt=""
+                    aria-hidden="true"
+                    width={180}
+                    height={199}
                     draggable={false}
-                    className="object-contain drop-shadow-2xl"
+                    className="h-36 w-auto drop-shadow-2xl sm:h-44 md:h-52"
                     priority
                   />
+                  <span
+                    aria-hidden="true"
+                    className="text-5xl font-black tracking-normal text-stone-100 drop-shadow-2xl sm:text-6xl md:text-8xl"
+                  >
+                    DietPixels
+                  </span>
                 </div>
               </div>
 
