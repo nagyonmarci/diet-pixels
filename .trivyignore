@@ -1,0 +1,7 @@
+# CVEs in Next.js vendored dependencies (next/dist/compiled/*)
+# These cannot be fixed via pnpm overrides — requires an upstream Next.js release.
+# Review when Next.js ships a new minor/patch version.
+
+CVE-2026-33671  # picomatch vendored in next/dist/compiled — no upstream fix yet
+CVE-2026-33672  # picomatch vendored in next/dist/compiled — no upstream fix yet
+CVE-2026-33750  # brace-expansion vendored in next/dist/compiled — no upstream fix yet
