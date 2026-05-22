@@ -9,7 +9,8 @@
     "clean": "rm -rf node_modules && rm -rf .next",
     "build": "next build",
     "start": "next start",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "size": "size-limit"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.15",
@@ -51,6 +52,8 @@
     "@types/semver": "^7.7.1",
     "pnpm": "^11.1.3",
     "tailwindcss": "^4.3.0",
-    "typescript": "^6"
+    "typescript": "^6",
+    "@size-limit/file": "^11",
+    "size-limit": "^11"
   }
 }
