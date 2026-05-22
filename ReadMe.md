@@ -1,6 +1,7 @@
-<h1 align="center" style="display: inline-flex; align-items: center; vertical-align: middle;">
-  <img src="frontend/public/dietpixels-icon.png" alt="" height="80">&nbsp;&nbsp;DietPixels
-</h1>
+<div align="center">
+  <img src="frontend/public/dietpixels-icon.png" width="96" alt="" />
+  <h1>DietPixels</h1>
+</div>
 
 <p align="center">
   Small self-hosted image compression UI backed by the official Go-based
