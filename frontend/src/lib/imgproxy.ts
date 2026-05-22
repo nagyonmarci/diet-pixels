@@ -21,12 +21,21 @@ export function getExtension(format: string): string {
   return FORMAT_EXTENSIONS[format] ?? `.${format}`;
 }
 
+export function formatFromContentType(contentType: string): string {
+  if (contentType.includes("avif")) return "avif";
+  if (contentType.includes("webp")) return "webp";
+  if (contentType.includes("png")) return "png";
+  if (contentType.includes("gif")) return "gif";
+  if (contentType.includes("tiff")) return "tiff";
+  return "jpeg";
+}
+
 export async function callImgproxy(
   filename: string,
   format: string,
   quality: number,
   width?: number
-): Promise<Buffer> {
+): Promise<{ buffer: Buffer; contentType: string }> {
   const parts: string[] = [];
   if (width && width > 0) parts.push(`resize:fit:${width}:0`);
   parts.push(`quality:${quality}`);
@@ -35,12 +44,18 @@ export async function callImgproxy(
   const processingOptions = parts.join("/");
   const url = `${IMGPROXY_URL}/unsafe/${processingOptions}/plain/local:///${filename}`;
 
-  const res = await fetch(url);
+  const headers: HeadersInit =
+    format === "auto"
+      ? { Accept: "image/avif,image/webp,image/jpeg,*/*" }
+      : {};
+
+  const res = await fetch(url, { headers });
   if (!res.ok) {
     const text = await res.text().catch(() => res.statusText);
     throw new Error(`imgproxy error ${res.status}: ${text}`);
   }
-  return Buffer.from(await res.arrayBuffer());
+  const contentType = res.headers.get("content-type") ?? "image/jpeg";
+  return { buffer: Buffer.from(await res.arrayBuffer()), contentType };
 }
 
 export async function compressToTargetSize(
@@ -59,9 +74,9 @@ export async function compressToTargetSize(
 
     while (lo <= hi) {
       const q = Math.floor((lo + hi) / 2);
-      const buf = await callImgproxy(filename, format, q, candidateWidth);
-      if (buf.length <= targetBytes) {
-        best = buf;
+      const { buffer } = await callImgproxy(filename, format, q, candidateWidth);
+      if (buffer.length <= targetBytes) {
+        best = buffer;
         lo = q + 1;
       } else {
         hi = q - 1;
@@ -85,8 +100,8 @@ export async function compressToTargetSize(
 
   while (widthLo <= widthHi) {
     const candidateWidth = Math.floor((widthLo + widthHi) / 2);
-    const buf = await callImgproxy(filename, format, 1, candidateWidth);
-    if (buf.length <= targetBytes) {
+    const { buffer } = await callImgproxy(filename, format, 1, candidateWidth);
+    if (buffer.length <= targetBytes) {
       bestWidth = candidateWidth;
       widthLo = candidateWidth + 1;
     } else {

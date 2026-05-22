@@ -233,6 +233,7 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
             <SelectValue placeholder={t("form.outputFormat.placeholder")} />
           </SelectTrigger>
           <SelectContent className={selectSurface}>
+            <SelectItem value="auto">{t("form.outputFormat.options.auto")}</SelectItem>
             <SelectItem value="jpeg">{t("form.outputFormat.options.jpeg")}</SelectItem>
             <SelectItem value="png">{t("form.outputFormat.options.png")}</SelectItem>
             <SelectItem value="avif">{t("form.outputFormat.options.avif")}</SelectItem>

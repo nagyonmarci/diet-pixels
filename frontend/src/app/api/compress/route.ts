@@ -7,11 +7,12 @@ import {
   callImgproxy,
   compressToTargetSize,
   buildOutputName,
+  formatFromContentType,
   UPLOADS_DIR,
   OUTPUTS_DIR,
 } from "@/lib/imgproxy";
 
-const SUPPORTED_FORMATS = new Set(["jpeg", "png", "avif", "ico", "webp", "gif", "tiff"]);
+const SUPPORTED_FORMATS = new Set(["jpeg", "png", "avif", "ico", "webp", "gif", "tiff", "auto"]);
 
 export async function POST(request: NextRequest) {
   await fs.mkdir(UPLOADS_DIR, { recursive: true });
@@ -52,6 +53,7 @@ export async function POST(request: NextRequest) {
       await fs.writeFile(uploadPath, Buffer.from(arrayBuffer));
 
       let resultBuf: Buffer;
+      let resolvedFormat = format;
       if (targetSizeKb && (format === "jpeg" || format === "avif")) {
         const metadata = await sharp(uploadPath).metadata();
         resultBuf = await compressToTargetSize(
@@ -62,10 +64,12 @@ export async function POST(request: NextRequest) {
           metadata.width
         );
       } else {
-        resultBuf = await callImgproxy(uploadName, format, quality, width);
+        const { buffer, contentType } = await callImgproxy(uploadName, format, quality, width);
+        resultBuf = buffer;
+        if (format === "auto") resolvedFormat = formatFromContentType(contentType);
       }
 
-      const outName = buildOutputName(file.name, format);
+      const outName = buildOutputName(file.name, resolvedFormat);
       await fs.writeFile(path.join(sessionOutputDir, outName), resultBuf);
       convertedFiles.push(outName);
     } catch (err) {

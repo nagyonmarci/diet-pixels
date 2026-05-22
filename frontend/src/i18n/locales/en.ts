@@ -59,13 +59,14 @@ export const en = {
       placeholder: "Select format",
       hint: "Select an output format to enable conversion.",
       options: {
+        auto: "Auto (best modern format)",
         jpeg: "JPEG (smaller file size)",
         png: "PNG (preserves transparency)",
         avif: "AVIF (best compression & quality)",
         ico: "ICO (preserves transparency)",
       },
       tooltip:
-        "PNG: Preserves transparency (alpha) and is best for images with transparent backgrounds.\nJPEG: Ideal for images without transparency and produces smaller file sizes.\nAVIF: Modern format with superior compression and quality, supports transparency.\nWebP/GIF/TIFF: Additional imgproxy output formats.\nICO: Commonly used for favicons and application icons, supports transparency (alpha). Recommended to use PNG as the source when converting to ICO.",
+        "Auto: imgproxy selects the best modern format (AVIF → WebP → JPEG) based on what it can produce.\nPNG: Preserves transparency (alpha) and is best for images with transparent backgrounds.\nJPEG: Ideal for images without transparency and produces smaller file sizes.\nAVIF: Modern format with superior compression and quality, supports transparency.\nWebP/GIF/TIFF: Additional imgproxy output formats.\nICO: Commonly used for favicons and application icons, supports transparency (alpha). Recommended to use PNG as the source when converting to ICO.",
     },
     compressionMode: {
       label: "{{format}} settings mode",

@@ -61,13 +61,14 @@ export const hu: TranslationSchema = {
       placeholder: "Formátum kiválasztása",
       hint: "Válassz kimeneti formátumot a konverzió engedélyezéséhez.",
       options: {
+        auto: "Auto (legjobb modern formátum)",
         jpeg: "JPEG (kisebb fájlméret)",
         png: "PNG (átlátszóság megőrzése)",
         avif: "AVIF (legjobb tömörítés & minőség)",
         ico: "ICO (átlátszóság megőrzése)",
       },
       tooltip:
-        "PNG: Megőrzi az átlátszóságot (alfa), legjobb átlátszó hátterű képekhez.\nJPEG: Átlátszóság nélküli képekhez ideális, kisebb fájlméretet eredményez.\nAVIF: Modern formátum kiváló tömörítéssel és minőséggel, támogatja az átlátszóságot.\nWebP/GIF/TIFF: További imgproxy kimeneti formátumok.\nICO: Favicon és alkalmazásikonok esetén használatos, támogatja az átlátszóságot (alfa). ICO konverzióhoz PNG forrás ajánlott.",
+        "Auto: az imgproxy a legjobb modern formátumot választja (AVIF → WebP → JPEG) a lehetőségek alapján.\nPNG: Megőrzi az átlátszóságot (alfa), legjobb átlátszó hátterű képekhez.\nJPEG: Átlátszóság nélküli képekhez ideális, kisebb fájlméretet eredményez.\nAVIF: Modern formátum kiváló tömörítéssel és minőséggel, támogatja az átlátszóságot.\nWebP/GIF/TIFF: További imgproxy kimeneti formátumok.\nICO: Favicon és alkalmazásikonok esetén használatos, támogatja az átlátszóságot (alfa). ICO konverzióhoz PNG forrás ajánlott.",
     },
     compressionMode: {
       label: "{{format}} beállítási mód",
