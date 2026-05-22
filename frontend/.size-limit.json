@@ -1,0 +1,8 @@
+[
+  {
+    "name": "App JS bundle",
+    "path": ".next/static/chunks/**/*.js",
+    "brotli": true,
+    "limit": "500 kB"
+  }
+]
