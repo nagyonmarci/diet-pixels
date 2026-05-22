@@ -61,13 +61,14 @@ export const hu: TranslationSchema = {
       placeholder: "Formátum kiválasztása",
       hint: "Válassz kimeneti formátumot a konverzió engedélyezéséhez.",
       options: {
+        auto: "Auto (legjobb modern formátum)",
         jpeg: "JPEG (kisebb fájlméret)",
         png: "PNG (átlátszóság megőrzése)",
         avif: "AVIF (legjobb tömörítés & minőség)",
         ico: "ICO (átlátszóság megőrzése)",
       },
       tooltip:
-        "PNG: Megőrzi az átlátszóságot (alfa), legjobb átlátszó hátterű képekhez.\nJPEG: Átlátszóság nélküli képekhez ideális, kisebb fájlméretet eredményez.\nAVIF: Modern formátum kiváló tömörítéssel és minőséggel, támogatja az átlátszóságot.\nWebP/GIF/TIFF: További imgproxy kimeneti formátumok.\nICO: Favicon és alkalmazásikonok esetén használatos, támogatja az átlátszóságot (alfa). ICO konverzióhoz PNG forrás ajánlott.",
+        "Auto: az imgproxy a legjobb modern formátumot választja (AVIF → WebP → JPEG) a lehetőségek alapján.\nPNG: Megőrzi az átlátszóságot (alfa), legjobb átlátszó hátterű képekhez.\nJPEG: Átlátszóság nélküli képekhez ideális, kisebb fájlméretet eredményez.\nAVIF: Modern formátum kiváló tömörítéssel és minőséggel, támogatja az átlátszóságot.\nWebP/GIF/TIFF: További imgproxy kimeneti formátumok.\nICO: Favicon és alkalmazásikonok esetén használatos, támogatja az átlátszóságot (alfa). ICO konverzióhoz PNG forrás ajánlott.",
     },
     compressionMode: {
       label: "{{format}} beállítási mód",
@@ -95,6 +96,30 @@ export const hu: TranslationSchema = {
       label: "Szélesség átméretezése",
       tooltip:
         "A kép(ek) átméretezése a kívánt szélességre, az eredeti képarány megtartásával.",
+    },
+    resizeMode: {
+      label: "Átméretezési mód",
+      tooltip:
+        "fit: képarány megtartása, vágás nélkül.\nfill: pontos szélesség kitöltése, vágással.\nforce: kényszerített méret, torzítással.\nauto: az imgproxy dönt.",
+      options: {
+        fit: "Fit (arány megtartása)",
+        fill: "Fill (vágás)",
+        force: "Force (nyújtás)",
+        auto: "Auto",
+      },
+    },
+    gravity: {
+      label: "Vágási irány",
+      tooltip: "A kép melyik részét tartsa meg vágáskor (csak fill módban).",
+      smart: "Smart",
+    },
+    blur: {
+      label: "Elmosás",
+      tooltip: "Gauss-elmosást alkalmaz. 0 = nincs elmosás, magasabb érték erősebb hatást jelent.",
+    },
+    sharpen: {
+      label: "Élesítés",
+      tooltip: "Élesíti a képet. 0 = nincs élesítés, magasabb érték erősebb hatást jelent.",
     },
     dropzone: {
       dragActive: "Ejtsd ide a képeket...",

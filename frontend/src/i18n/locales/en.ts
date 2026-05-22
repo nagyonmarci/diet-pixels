@@ -59,13 +59,14 @@ export const en = {
       placeholder: "Select format",
       hint: "Select an output format to enable conversion.",
       options: {
+        auto: "Auto (best modern format)",
         jpeg: "JPEG (smaller file size)",
         png: "PNG (preserves transparency)",
         avif: "AVIF (best compression & quality)",
         ico: "ICO (preserves transparency)",
       },
       tooltip:
-        "PNG: Preserves transparency (alpha) and is best for images with transparent backgrounds.\nJPEG: Ideal for images without transparency and produces smaller file sizes.\nAVIF: Modern format with superior compression and quality, supports transparency.\nWebP/GIF/TIFF: Additional imgproxy output formats.\nICO: Commonly used for favicons and application icons, supports transparency (alpha). Recommended to use PNG as the source when converting to ICO.",
+        "Auto: imgproxy selects the best modern format (AVIF → WebP → JPEG) based on what it can produce.\nPNG: Preserves transparency (alpha) and is best for images with transparent backgrounds.\nJPEG: Ideal for images without transparency and produces smaller file sizes.\nAVIF: Modern format with superior compression and quality, supports transparency.\nWebP/GIF/TIFF: Additional imgproxy output formats.\nICO: Commonly used for favicons and application icons, supports transparency (alpha). Recommended to use PNG as the source when converting to ICO.",
     },
     compressionMode: {
       label: "{{format}} settings mode",
@@ -93,6 +94,30 @@ export const en = {
       label: "Resize Width",
       tooltip:
         "Resizes the image(s) to the desired width while preserving the original aspect ratio.",
+    },
+    resizeMode: {
+      label: "Resize Mode",
+      tooltip:
+        "fit: preserves aspect ratio, no cropping.\nfill: fills the exact width, crops to fit.\nforce: stretches to exact width, may distort.\nauto: imgproxy decides.",
+      options: {
+        fit: "Fit (preserve ratio)",
+        fill: "Fill (crop to fit)",
+        force: "Force (stretch)",
+        auto: "Auto",
+      },
+    },
+    gravity: {
+      label: "Crop anchor",
+      tooltip: "Which part of the image to keep when cropping (fill mode only).",
+      smart: "Smart",
+    },
+    blur: {
+      label: "Blur",
+      tooltip: "Applies a Gaussian blur. 0 = no blur, higher values increase the blur radius.",
+    },
+    sharpen: {
+      label: "Sharpen",
+      tooltip: "Sharpens the image. 0 = no sharpening, higher values increase the effect.",
     },
     dropzone: {
       dragActive: "Drop images here...",

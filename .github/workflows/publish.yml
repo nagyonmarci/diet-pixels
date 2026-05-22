@@ -22,6 +22,8 @@ jobs:
       contents: read
       packages: write
       id-token: write
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
@@ -78,3 +80,41 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/dietpixels-frontend@${{ steps.build.outputs.digest }}
         env:
           COSIGN_EXPERIMENTAL: "1"
+
+  smoke-test:
+    name: Smoke Test
+    needs: publish
+    runs-on: ubuntu-24.04
+    permissions:
+      packages: read
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Start container
+        run: |
+          docker run -d --name dietpixels-smoke \
+            -p 3000:3000 \
+            ghcr.io/${{ github.repository_owner }}/dietpixels-frontend@${{ needs.publish.outputs.digest }}
+
+      - name: Wait for /api/health
+        run: |
+          for i in $(seq 1 15); do
+            if curl -sf http://localhost:3000/api/health; then
+              echo "Container is ready"
+              exit 0
+            fi
+            echo "Waiting... ($i/15)"
+            sleep 2
+          done
+          echo "Container did not become ready in time"
+          docker logs dietpixels-smoke
+          exit 1
+
+      - name: Stop container
+        if: always()
+        run: docker rm -f dietpixels-smoke

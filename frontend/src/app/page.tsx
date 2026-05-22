@@ -82,6 +82,10 @@ function HomePageContent() {
   const [formatRequired, setFormatRequired] = useState(false);
   const [targetSizeMB, setTargetSizeMB] = useState("");
   const [compressionMode, setCompressionMode] = useState<"quality" | "size">("quality");
+  const [blur, setBlur] = useState("0");
+  const [sharpen, setSharpen] = useState("0");
+  const [resizeMode, setResizeMode] = useState("fit");
+  const [gravity, setGravity] = useState("ce");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [fileManagerOpen, setFileManagerOpen] = useState(false);
 
@@ -217,8 +221,12 @@ function HomePageContent() {
       }
       if (resizeWidthEnabled) {
         formData.append("width", width);
+        formData.append("resize_mode", resizeMode);
+        if (resizeMode === "fill") formData.append("gravity", gravity);
       }
       formData.append("format", outputFormat);
+      if (parseFloat(blur) > 0) formData.append("blur", blur);
+      if (parseFloat(sharpen) > 0) formData.append("sharpen", sharpen);
       if ((outputFormat === "jpeg" || outputFormat === "avif") && compressionMode === "size") {
         const kb = Math.round(parseFloat(targetSizeMB) * 1024);
         if (!isNaN(kb) && kb > 0) {
@@ -300,6 +308,10 @@ function HomePageContent() {
       setError,
       compressionMode,
       targetSizeMB,
+      blur,
+      sharpen,
+      resizeMode,
+      gravity,
     ]
   );
 
@@ -424,6 +436,14 @@ function HomePageContent() {
               getRootProps={getRootProps}
               getInputProps={getInputProps}
               isDragActive={isDragActive}
+              resizeMode={resizeMode}
+              setResizeMode={setResizeMode}
+              gravity={gravity}
+              setGravity={setGravity}
+              blur={blur}
+              setBlur={setBlur}
+              sharpen={sharpen}
+              setSharpen={setSharpen}
               supportedExtensions={formattedSupportedExtensions}
               verifiedExtensions={formattedVerifiedExtensions}
               extensionsLoading={extensionsLoading}
