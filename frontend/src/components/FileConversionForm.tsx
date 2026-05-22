@@ -53,6 +53,11 @@ interface FileConversionFormProps {
   getInputProps: ReturnType<typeof useDropzone>["getInputProps"];
   isDragActive: boolean;
 
+  blur: string;
+  setBlur: (val: string) => void;
+  sharpen: string;
+  setSharpen: (val: string) => void;
+
   // ✅ Extended API data
   supportedExtensions: string[]
   verifiedExtensions: string[]
@@ -83,6 +88,10 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
   getRootProps,
   getInputProps,
   isDragActive,
+  blur,
+  setBlur,
+  sharpen,
+  setSharpen,
   supportedExtensions,
   verifiedExtensions,
   extensionsLoading,
@@ -450,6 +459,68 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
             )}
           />
         )}
+      </div>
+
+      {/* Blur */}
+      <div className="space-y-1">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="blur" className="text-sm flex items-center gap-1">
+            {t("form.blur.label")}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span>
+                  <Info className={cn("h-4 w-4 cursor-pointer", subtleText)} />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent side="top" className={cn("p-2 rounded shadow-lg border", tooltipSurface)}>
+                <p className="text-sm">{t("form.blur.tooltip")}</p>
+              </TooltipContent>
+            </Tooltip>
+          </Label>
+          <span className={cn("text-sm", subtleText)}>{parseFloat(blur) > 0 ? blur : "off"}</span>
+        </div>
+        <input
+          id="blur"
+          type="range"
+          min="0"
+          max="10"
+          step="0.5"
+          value={blur}
+          onChange={(e) => setBlur(e.target.value)}
+          disabled={isLoading}
+          className="w-full accent-blue-500"
+        />
+      </div>
+
+      {/* Sharpen */}
+      <div className="space-y-1">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="sharpen" className="text-sm flex items-center gap-1">
+            {t("form.sharpen.label")}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span>
+                  <Info className={cn("h-4 w-4 cursor-pointer", subtleText)} />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent side="top" className={cn("p-2 rounded shadow-lg border", tooltipSurface)}>
+                <p className="text-sm">{t("form.sharpen.tooltip")}</p>
+              </TooltipContent>
+            </Tooltip>
+          </Label>
+          <span className={cn("text-sm", subtleText)}>{parseFloat(sharpen) > 0 ? sharpen : "off"}</span>
+        </div>
+        <input
+          id="sharpen"
+          type="range"
+          min="0"
+          max="10"
+          step="0.5"
+          value={sharpen}
+          onChange={(e) => setSharpen(e.target.value)}
+          disabled={isLoading}
+          className="w-full accent-blue-500"
+        />
       </div>
 
       {/* Error Alert (if any) */}

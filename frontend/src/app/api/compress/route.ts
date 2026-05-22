@@ -29,6 +29,8 @@ export async function POST(request: NextRequest) {
   const quality = Math.min(100, Math.max(1, parseInt(formData.get("quality") as string ?? "85", 10) || 85));
   const width = parseInt(formData.get("width") as string ?? "", 10) || undefined;
   const targetSizeKb = parseInt(formData.get("target_size_kb") as string ?? "", 10) || undefined;
+  const blur = parseFloat(formData.get("blur") as string ?? "0") || undefined;
+  const sharpen = parseFloat(formData.get("sharpen") as string ?? "0") || undefined;
 
   if (!files.length) {
     return NextResponse.json({ error: "No files uploaded" }, { status: 400 });
@@ -64,7 +66,7 @@ export async function POST(request: NextRequest) {
           metadata.width
         );
       } else {
-        const { buffer, contentType } = await callImgproxy(uploadName, format, quality, width);
+        const { buffer, contentType } = await callImgproxy(uploadName, format, quality, width, blur, sharpen);
         resultBuf = buffer;
         if (format === "auto") resolvedFormat = formatFromContentType(contentType);
       }

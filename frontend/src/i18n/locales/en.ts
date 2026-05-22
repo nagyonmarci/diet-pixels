@@ -95,6 +95,14 @@ export const en = {
       tooltip:
         "Resizes the image(s) to the desired width while preserving the original aspect ratio.",
     },
+    blur: {
+      label: "Blur",
+      tooltip: "Applies a Gaussian blur. 0 = no blur, higher values increase the blur radius.",
+    },
+    sharpen: {
+      label: "Sharpen",
+      tooltip: "Sharpens the image. 0 = no sharpening, higher values increase the effect.",
+    },
     dropzone: {
       dragActive: "Drop images here...",
       processing: "Cannot drop files while processing...",

@@ -34,10 +34,14 @@ export async function callImgproxy(
   filename: string,
   format: string,
   quality: number,
-  width?: number
+  width?: number,
+  blur?: number,
+  sharpen?: number
 ): Promise<{ buffer: Buffer; contentType: string }> {
   const parts: string[] = [];
   if (width && width > 0) parts.push(`resize:fit:${width}:0`);
+  if (blur && blur > 0) parts.push(`blur:${blur}`);
+  if (sharpen && sharpen > 0) parts.push(`sharpen:${sharpen}`);
   parts.push(`quality:${quality}`);
   parts.push(`format:${format}`);
 

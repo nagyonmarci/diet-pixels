@@ -97,6 +97,14 @@ export const hu: TranslationSchema = {
       tooltip:
         "A kép(ek) átméretezése a kívánt szélességre, az eredeti képarány megtartásával.",
     },
+    blur: {
+      label: "Elmosás",
+      tooltip: "Gauss-elmosást alkalmaz. 0 = nincs elmosás, magasabb érték erősebb hatást jelent.",
+    },
+    sharpen: {
+      label: "Élesítés",
+      tooltip: "Élesíti a képet. 0 = nincs élesítés, magasabb érték erősebb hatást jelent.",
+    },
     dropzone: {
       dragActive: "Ejtsd ide a képeket...",
       processing: "Feldolgozás közben nem lehet fájlokat húzni...",
