@@ -31,6 +31,8 @@ export async function POST(request: NextRequest) {
   const targetSizeKb = parseInt(formData.get("target_size_kb") as string ?? "", 10) || undefined;
   const blur = parseFloat(formData.get("blur") as string ?? "0") || undefined;
   const sharpen = parseFloat(formData.get("sharpen") as string ?? "0") || undefined;
+  const resizeMode = (formData.get("resize_mode") as string | null) ?? "fit";
+  const gravity = (formData.get("gravity") as string | null) ?? undefined;
 
   if (!files.length) {
     return NextResponse.json({ error: "No files uploaded" }, { status: 400 });
@@ -66,7 +68,7 @@ export async function POST(request: NextRequest) {
           metadata.width
         );
       } else {
-        const { buffer, contentType } = await callImgproxy(uploadName, format, quality, width, blur, sharpen);
+        const { buffer, contentType } = await callImgproxy(uploadName, format, quality, width, blur, sharpen, resizeMode, gravity);
         resultBuf = buffer;
         if (format === "auto") resolvedFormat = formatFromContentType(contentType);
       }

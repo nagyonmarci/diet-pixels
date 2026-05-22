@@ -53,6 +53,10 @@ interface FileConversionFormProps {
   getInputProps: ReturnType<typeof useDropzone>["getInputProps"];
   isDragActive: boolean;
 
+  resizeMode: string;
+  setResizeMode: (val: string) => void;
+  gravity: string;
+  setGravity: (val: string) => void;
   blur: string;
   setBlur: (val: string) => void;
   sharpen: string;
@@ -88,6 +92,10 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
   getRootProps,
   getInputProps,
   isDragActive,
+  resizeMode,
+  setResizeMode,
+  gravity,
+  setGravity,
   blur,
   setBlur,
   sharpen,
@@ -444,20 +452,100 @@ const FileConversionForm: React.FC<FileConversionFormProps> = ({
           />
         </div>
         {resizeWidthEnabled && (
-          <Input
-            data-testid="resize-width-input"
-            itemProp="data-testid: convert-btn"
-            id="width"
-            type="number"
-            placeholder="800"
-            value={width}
-            onChange={(e) => setWidth(e.target.value)}
-            disabled={isLoading}
-            className={cn(
-              surfaceInputClass,
-              "disabled:opacity-50 disabled:cursor-not-allowed"
+          <div className="space-y-3">
+            <Input
+              data-testid="resize-width-input"
+              itemProp="data-testid: convert-btn"
+              id="width"
+              type="number"
+              placeholder="800"
+              value={width}
+              onChange={(e) => setWidth(e.target.value)}
+              disabled={isLoading}
+              className={cn(
+                surfaceInputClass,
+                "disabled:opacity-50 disabled:cursor-not-allowed"
+              )}
+            />
+
+            {/* Resize mode */}
+            <div className="space-y-1">
+              <Label className="text-sm flex items-center gap-1">
+                {t("form.resizeMode.label")}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span>
+                      <Info className={cn("h-4 w-4 cursor-pointer", subtleText)} />
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className={cn("p-2 rounded shadow-lg border", tooltipSurface)}>
+                    <p className="text-sm whitespace-pre-line">{t("form.resizeMode.tooltip")}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </Label>
+              <Select value={resizeMode} onValueChange={setResizeMode} disabled={isLoading}>
+                <SelectTrigger className={cn(surfaceInputClass, "w-full")}>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className={selectSurface}>
+                  <SelectItem value="fit">{t("form.resizeMode.options.fit")}</SelectItem>
+                  <SelectItem value="fill">{t("form.resizeMode.options.fill")}</SelectItem>
+                  <SelectItem value="force">{t("form.resizeMode.options.force")}</SelectItem>
+                  <SelectItem value="auto">{t("form.resizeMode.options.auto")}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Gravity — only for fill mode */}
+            {resizeMode === "fill" && (
+              <div className="space-y-1">
+                <Label className="text-sm flex items-center gap-1">
+                  {t("form.gravity.label")}
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span>
+                        <Info className={cn("h-4 w-4 cursor-pointer", subtleText)} />
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className={cn("p-2 rounded shadow-lg border", tooltipSurface)}>
+                      <p className="text-sm">{t("form.gravity.tooltip")}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </Label>
+                <div className="grid grid-cols-3 gap-1 w-fit">
+                  {(["nowe","no","noea","we","ce","ea","sowe","so","soea"] as const).map((g) => (
+                    <button
+                      key={g}
+                      type="button"
+                      disabled={isLoading}
+                      onClick={() => setGravity(g)}
+                      className={cn(
+                        "h-8 w-8 rounded text-xs border transition-colors",
+                        gravity === g
+                          ? "bg-blue-500 text-white border-blue-500"
+                          : cn("border-input", subtleText, "hover:bg-accent")
+                      )}
+                    >
+                      {{"nowe":"↖","no":"↑","noea":"↗","we":"←","ce":"·","ea":"→","sowe":"↙","so":"↓","soea":"↘"}[g]}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  disabled={isLoading}
+                  onClick={() => setGravity("sm")}
+                  className={cn(
+                    "text-xs px-2 py-1 rounded border transition-colors",
+                    gravity === "sm"
+                      ? "bg-blue-500 text-white border-blue-500"
+                      : cn("border-input", subtleText, "hover:bg-accent")
+                  )}
+                >
+                  {t("form.gravity.smart")}
+                </button>
+              </div>
             )}
-          />
+          </div>
         )}
       </div>
 

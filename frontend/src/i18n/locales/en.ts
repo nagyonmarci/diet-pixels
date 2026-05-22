@@ -95,6 +95,22 @@ export const en = {
       tooltip:
         "Resizes the image(s) to the desired width while preserving the original aspect ratio.",
     },
+    resizeMode: {
+      label: "Resize Mode",
+      tooltip:
+        "fit: preserves aspect ratio, no cropping.\nfill: fills the exact width, crops to fit.\nforce: stretches to exact width, may distort.\nauto: imgproxy decides.",
+      options: {
+        fit: "Fit (preserve ratio)",
+        fill: "Fill (crop to fit)",
+        force: "Force (stretch)",
+        auto: "Auto",
+      },
+    },
+    gravity: {
+      label: "Crop anchor",
+      tooltip: "Which part of the image to keep when cropping (fill mode only).",
+      smart: "Smart",
+    },
     blur: {
       label: "Blur",
       tooltip: "Applies a Gaussian blur. 0 = no blur, higher values increase the blur radius.",

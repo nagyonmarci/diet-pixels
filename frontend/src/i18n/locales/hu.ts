@@ -97,6 +97,22 @@ export const hu: TranslationSchema = {
       tooltip:
         "A kép(ek) átméretezése a kívánt szélességre, az eredeti képarány megtartásával.",
     },
+    resizeMode: {
+      label: "Átméretezési mód",
+      tooltip:
+        "fit: képarány megtartása, vágás nélkül.\nfill: pontos szélesség kitöltése, vágással.\nforce: kényszerített méret, torzítással.\nauto: az imgproxy dönt.",
+      options: {
+        fit: "Fit (arány megtartása)",
+        fill: "Fill (vágás)",
+        force: "Force (nyújtás)",
+        auto: "Auto",
+      },
+    },
+    gravity: {
+      label: "Vágási irány",
+      tooltip: "A kép melyik részét tartsa meg vágáskor (csak fill módban).",
+      smart: "Smart",
+    },
     blur: {
       label: "Elmosás",
       tooltip: "Gauss-elmosást alkalmaz. 0 = nincs elmosás, magasabb érték erősebb hatást jelent.",

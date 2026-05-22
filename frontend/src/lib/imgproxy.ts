@@ -36,10 +36,15 @@ export async function callImgproxy(
   quality: number,
   width?: number,
   blur?: number,
-  sharpen?: number
+  sharpen?: number,
+  resizeMode: string = "fit",
+  gravity?: string
 ): Promise<{ buffer: Buffer; contentType: string }> {
   const parts: string[] = [];
-  if (width && width > 0) parts.push(`resize:fit:${width}:0`);
+  if (width && width > 0) {
+    if (gravity) parts.push(`gravity:${gravity}`);
+    parts.push(`resize:${resizeMode}:${width}:0`);
+  }
   if (blur && blur > 0) parts.push(`blur:${blur}`);
   if (sharpen && sharpen > 0) parts.push(`sharpen:${sharpen}`);
   parts.push(`quality:${quality}`);
