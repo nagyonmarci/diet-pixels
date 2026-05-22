@@ -1,7 +1,16 @@
-# DietPixels
+<div align="center">
+  <img src="frontend/public/dietpixels-icon.png" width="96" alt="" />
+  <h1>DietPixels</h1>
+</div>
 
-Small self-hosted image compression UI backed by the official Go-based
-[`darthsim/imgproxy`](https://github.com/imgproxy/imgproxy) Docker image.
+<p align="center">
+  Small self-hosted image compression UI backed by the official Go-based
+  <a href="https://github.com/imgproxy/imgproxy"><code>darthsim/imgproxy</code></a> Docker image.
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/main.png" alt="DietPixels main screen" width="780">
+</p>
 
 This repository contains only the Next.js frontend and API wrapper. Image
 processing is delegated to `imgproxy`, which runs as a sidecar service in Docker
