@@ -50,7 +50,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/semver": "^7.7.1",
-    "pnpm": "^11.1.3",
+    "pnpm": "^11.3.0",
     "tailwindcss": "^4.3.0",
     "typescript": "^6",
     "@size-limit/file": "^11",
