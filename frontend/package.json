@@ -54,6 +54,6 @@
     "tailwindcss": "^4.3.0",
     "typescript": "^6",
     "@size-limit/file": "^11",
-    "size-limit": "^11"
+    "size-limit": "^12"
   }
 }
