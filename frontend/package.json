@@ -53,7 +53,7 @@
     "pnpm": "^11.5.0",
     "tailwindcss": "^4.3.0",
     "typescript": "^6",
-    "@size-limit/file": "^11",
+    "@size-limit/file": "^12",
     "size-limit": "^11"
   }
 }
